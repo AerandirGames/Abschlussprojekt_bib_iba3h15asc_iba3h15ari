@@ -5,9 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/ally"
+            android:id="@+id/faq"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/ally" />
+            android:title="@string/faq" />
+        <item
+            android:id="@+id/news"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/news" />
+        <item
+            android:id="@+id/rabatte"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/rabatte" />
         <item
             android:id="@+id/nebenwirkungen"
             android:icon="@drawable/ic_menu_gallery"
@@ -25,9 +33,9 @@
     <item android:title="Persönliches">
         <menu>
             <item
-                android:id="@+id/konto"
+                android:id="@+id/einstellungen"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/konto" />
+                android:title="@string/einstellungen" />
             <item
                 android:id="@+id/abmelden"
                 android:icon="@drawable/ic_menu_send"

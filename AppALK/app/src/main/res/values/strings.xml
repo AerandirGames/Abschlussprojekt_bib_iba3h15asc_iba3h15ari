@@ -49,11 +49,13 @@
     <string name="ok">Ok</string>
 
     <!-- Nav Bar -->
-    <string name="ally">Ally</string>
+    <string name="faq">Frage stellen</string>
+    <string name="news">News</string>
+    <string name="rabatte">Rabatte</string>
     <string name="nebenwirkungen">Nebenwirkungen melden</string>
     <string name="kongresse">Kongresse</string>
     <string name="fachinfos">Fachinfos</string>
-    <string name="konto">Konto</string>
+    <string name="einstellungen">Einstellungen</string>
     <string name="abmelden">Abmelden</string>
 
 </resources>
