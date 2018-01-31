@@ -1,8 +1,10 @@
 package com.example.kai.appalk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,16 +37,9 @@ public class HomeScreen extends AppCompatActivity
         }
 
 
-        FloatingActionButton fab =  findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
+        int ke = KeyEvent.KEYCODE_BACK;
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,7 +50,15 @@ public class HomeScreen extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
+/*
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+*/
     @Override
     public void onBackPressed()
     {
@@ -66,6 +69,7 @@ public class HomeScreen extends AppCompatActivity
         }
         else
         {
+
             super.onBackPressed();
         }
     }
@@ -104,39 +108,42 @@ public class HomeScreen extends AppCompatActivity
 
         if (id == R.id.faq)
         {
-            // Handle the camera action
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.news)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.rabatte)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.kongresse)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.nebenwirkungen)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.fachinfos)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.einstellungen)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
         else if (id == R.id.abmelden)
         {
-
+            startActivity(new Intent(this, HomeScreen.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
+
     }
+
 }

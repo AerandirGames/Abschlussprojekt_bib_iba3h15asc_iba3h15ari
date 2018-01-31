@@ -6,27 +6,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/faq"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_frage"
             android:title="@string/faq" />
         <item
             android:id="@+id/news"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_news"
             android:title="@string/news" />
         <item
             android:id="@+id/rabatte"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_rabatt"
             android:title="@string/rabatte" />
         <item
             android:id="@+id/nebenwirkungen"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_nebenwirkungen"
             android:title="@string/nebenwirkungen" />
         <item
             android:id="@+id/kongresse"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_archive_black_24dp"
             android:title="@string/kongresse" />
         <item
             android:id="@+id/fachinfos"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_fachinfo"
             android:title="@string/fachinfos" />
     </group>
 
@@ -34,11 +34,11 @@
         <menu>
             <item
                 android:id="@+id/einstellungen"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_settings"
                 android:title="@string/einstellungen" />
             <item
                 android:id="@+id/abmelden"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_exit"
                 android:title="@string/abmelden" />
         </menu>
     </item>
