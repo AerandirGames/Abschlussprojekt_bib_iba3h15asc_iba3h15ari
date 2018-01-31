@@ -6,11 +6,12 @@
         android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/but_tab1weiter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="410dp"
         android:text="Weiter"
+        android:onClick=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
