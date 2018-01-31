@@ -48,4 +48,12 @@
     <string name="incorrectData">Sie haben falsche Daten eingegeben</string>
     <string name="ok">Ok</string>
 
+    <!-- Nav Bar -->
+    <string name="ally">Ally</string>
+    <string name="nebenwirkungen">Nebenwirkungen melden</string>
+    <string name="kongresse">Kongresse</string>
+    <string name="fachinfos">Fachinfos</string>
+    <string name="konto">Konto</string>
+    <string name="abmelden">Abmelden</string>
+
 </resources>
