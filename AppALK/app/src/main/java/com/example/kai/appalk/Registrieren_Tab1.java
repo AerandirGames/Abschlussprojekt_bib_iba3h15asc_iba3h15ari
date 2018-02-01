@@ -3,7 +3,6 @@ package com.example.kai.appalk;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,10 +32,12 @@ public class Registrieren_Tab1 extends Fragment
 
     public void nextFragment ()
     {
+        /*
         Registrieren_Tab2 tab2 = new Registrieren_Tab2();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.tabItem2, tab2);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        */
     }
 }

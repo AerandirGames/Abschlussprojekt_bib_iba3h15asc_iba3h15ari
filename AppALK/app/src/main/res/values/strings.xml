@@ -10,15 +10,21 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="tab_text_1">Schritt 1</string>
-    <string name="tab_text_2">Schritt 2</string>
-    <string name="tab_text_3">Schritt 3</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_registrieren">Registrieren</string>
     <string name="passwordVerify">Passwort erneut eingeben</string>
     <string name="mail">E-Mail</string>
     <string name="anrede">Anrede</string>
     <string name="title">Titel</string>
+    <string name="telefonNr">Telefonnummer</string>
+    <string name="next">Weiter</string>
+    <string name="agb">Ich habe die Datenschutzbestimmungen gelesen und akzeptiere die AGBs.</string>
+    <string name="praxisname">Praxisname</string>
+    <string name="praxismail">Praxismailadresse</string>
+    <string name="praxisfon">Praxistel.</string>
+    <string name="praxisadress">Adresse + Nr.</string>
+    <string name="city">Stadt</string>
+    <string name="plz">PLZ</string>
 
     <string-array name="titleNames">
         <item></item>
@@ -44,9 +50,10 @@
     <string name="tv_passwortVergessen_beschr">Haben Sie Ihr Passwort vergessen?</string>
     <string name="sw_angemeldetBleiben_beschr">angemeldet bleiben</string>
 
+
     <!-- ANMELDE JAVA -->
     <string name="incorrectData">Sie haben falsche Daten eingegeben</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
 
     <!-- Nav Bar -->
     <string name="faq">Frage stellen</string>
