@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Daniel on 31.01.2018.
@@ -13,7 +14,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatenbankManager extends SQLiteOpenHelper{
 
 
-    public static final String DB_NAME = "interne.db";
+    private Cursor res;
+    public static final String DB_NAME = "interneDb";
     public static final int DB_VERSION = 1;
     public static final String TABLE_EINSTELLUNGEN = "einstellungen";
     public static final String AUTO_LOGIN = "autologin";
@@ -25,7 +27,9 @@ public class DatenbankManager extends SQLiteOpenHelper{
                     AUTO_LOGIN + " integer);";
 
     public DatenbankManager(Context context) {
+
         super(context, DB_NAME, null, DB_VERSION);
+
     }
 
     @Override
@@ -42,42 +46,48 @@ public class DatenbankManager extends SQLiteOpenHelper{
 
     }
 
-    public void updateAutoLog(boolean b)
-    {
+    public void updateAutoLogFalse() {
 
-        if(b)
-        {
-            ph = 1;
-        }
-        else
-        {
-            ph=0;
-        }
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(AUTO_LOGIN, ph);
+        values.put(AUTO_LOGIN, 0);
 
-        db.update(TABLE_EINSTELLUNGEN,values, AUTO_LOGIN + " = 1", new String[]{String.valueOf(ph)});
-        db.update(TABLE_EINSTELLUNGEN,values, AUTO_LOGIN + " = 0", new String[]{String.valueOf(ph)});
-        db.update(TABLE_EINSTELLUNGEN,values, AUTO_LOGIN + " = null", new String[]{String.valueOf(ph)});
+        db.update(TABLE_EINSTELLUNGEN,values, ID + " = ?", new String[]{String.valueOf(1)});
     }
 
-    public int getSwitchValue()
+    public void updateAutoLogTrue()
     {
-        int zurueck = 0;
+
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.query(TABLE_EINSTELLUNGEN, new String[]{AUTO_LOGIN},ID + "=1",new String[]{"1"},null,null,null,null);
-        if(cursor != null)
+        ContentValues values = new ContentValues();
+        values.put(AUTO_LOGIN, 1);
+
+        db.update(TABLE_EINSTELLUNGEN,values, ID + " = ?", new String[]{String.valueOf(1)});
+
+}
+    public Cursor getSwitchValue()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        res = db.rawQuery("select * from " + TABLE_EINSTELLUNGEN,null);
+        return res;
+    }
+    public void insertV()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(AUTO_LOGIN,0);
+        long result = db.insert(TABLE_EINSTELLUNGEN,"1",cv);
+        if(result == -1)
         {
-            cursor.moveToFirst();
+            Log.d("","fail");
         }
-
-        zurueck = cursor.getInt(1);
-        return zurueck;
-
-
+        else
+        {
+            Log.d("","nice");
+        }
     }
 }
 

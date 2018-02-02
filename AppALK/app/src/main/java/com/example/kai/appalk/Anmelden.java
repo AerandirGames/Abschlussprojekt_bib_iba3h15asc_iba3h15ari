@@ -3,59 +3,84 @@ package com.example.kai.appalk;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
 
 public class Anmelden extends AppCompatActivity {
-
-    public Switch autologin;
+    String val;
     boolean autologin_b;
+    Switch autologin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //hier autologin in datenbank prüfen
-        DatenbankManager dbm = new DatenbankManager(this);
+        DatenbankManager dbm;
 
-        if(dbm.getSwitchValue() == 1)
+
+
+
+        Cursor res;
+
+
+        dbm = new DatenbankManager(this);
+        res = dbm.getSwitchValue();
+        System.out.println(String.valueOf(res.getCount()));
+        if(res.getCount() == 0)
         {
-            startActivity(new Intent(this, HomeScreen.class));
-        }
-        else
-        {
+            System.out.println("schritt1");
+            dbm.insertV();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_anmelden_gui);
             getSupportActionBar().setTitle(R.string.login);
         }
+        else
+        {
 
-
-
-
-        autologin = findViewById(R.id.sw_angemeldetBleiben);
-        autologin_b = autologin.isChecked();
-        autologin.setTextOn("Ja");
-        autologin.setTextOff("Nein");
-        autologin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(autologin_b)
-                {
-                    DatenbankManager db = new DatenbankManager(getParent());
-
-                    autologin_b = false;
-                    db.updateAutoLog(false);
-                }
-                else
-                {
-                    DatenbankManager db = new DatenbankManager(getParent());
-                    autologin_b = true;
-                    db.updateAutoLog(true);
-                }
+            while (res.moveToNext()) {
+                val = res.getString(1);
+                System.out.println(val);
             }
-        });
+
+            if(Integer.parseInt(val) == 1)
+            {
+                super.onCreate(savedInstanceState);
+                startActivity(new Intent(this, HomeScreen.class));
+            }
+            else
+            {
+                System.out.println("db eintrag ist 0");
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_anmelden_gui);
+                getSupportActionBar().setTitle(R.string.login);
+
+                autologin = (Switch) findViewById(R.id.sw_angemeldetBleiben);
+
+                autologin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        autologin_b = autologin.isChecked();
+                        if(autologin_b)
+                        {
+                            System.out.println("auf true");
+                            autologin_b = true;
+                        }
+                        else
+                        {
+
+                            System.out.println("auf false");
+                            autologin_b = false;
+                        }
+                    }
+                });
+            }
+        }
+
+
 
     }
 
@@ -71,6 +96,17 @@ public class Anmelden extends AppCompatActivity {
         if (checkAnmeldung())
         {
             //hier switch wert in datenbank aktuallisieren
+           DatenbankManager db = new DatenbankManager(this);
+           if(autologin_b && Integer.parseInt(val) == 0)
+           {
+               db.updateAutoLogTrue();
+           }
+           else if(autologin_b && Integer.parseInt(val) == 1)
+           {
+               db.updateAutoLogFalse();
+           }
+
+
             startActivity(new Intent(this, HomeScreen.class));
         }
     }
