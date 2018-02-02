@@ -24,20 +24,9 @@ public class Registrieren_Tab1 extends Fragment
             @Override
             public void onClick(View v)
             {
-                nextFragment();
+                ((Registrieren)getActivity()).setCurrentItem (1, true);
             }
         });
         return view;
-    }
-
-    public void nextFragment ()
-    {
-        /*
-        Registrieren_Tab2 tab2 = new Registrieren_Tab2();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.tabItem2, tab2);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        */
     }
 }

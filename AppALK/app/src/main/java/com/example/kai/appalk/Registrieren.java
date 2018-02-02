@@ -52,4 +52,9 @@ public class Registrieren extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void setCurrentItem(int item, boolean smoothScroll)
+    {
+        mViewPager.setCurrentItem(item, smoothScroll);
+    }
 }

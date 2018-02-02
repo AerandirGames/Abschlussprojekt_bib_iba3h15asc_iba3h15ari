@@ -18,6 +18,7 @@
     <string name="title">Titel</string>
     <string name="telefonNr">Telefonnummer</string>
     <string name="next">Weiter</string>
+    <string name="back">Zurück</string>
     <string name="agb">Ich habe die Datenschutzbestimmungen gelesen und akzeptiere die AGBs.</string>
     <string name="praxisname">Praxisname</string>
     <string name="praxismail">Praxismailadresse</string>

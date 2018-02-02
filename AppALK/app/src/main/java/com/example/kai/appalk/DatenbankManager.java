@@ -1,12 +1,9 @@
 package com.example.kai.appalk;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 /**
  * Created by Daniel on 31.01.2018.
  */
-
+/*
 public class DatenbankManager extends SQLiteOpenHelper{
 
     
@@ -25,4 +22,4 @@ public class DatenbankManager extends SQLiteOpenHelper{
 
 }
 
-
+*/
