@@ -7,14 +7,56 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 
 public class Anmelden extends AppCompatActivity {
 
+    public Switch autologin;
+    boolean autologin_b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anmelden_gui);
-        getSupportActionBar().setTitle(R.string.login);
+
+        //hier autologin in datenbank prüfen
+        DatenbankManager dbm = new DatenbankManager(this);
+
+        if(dbm.getSwitchValue() == 1)
+        {
+            startActivity(new Intent(this, HomeScreen.class));
+        }
+        else
+        {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_anmelden_gui);
+            getSupportActionBar().setTitle(R.string.login);
+        }
+
+
+
+
+        autologin = findViewById(R.id.sw_angemeldetBleiben);
+        autologin_b = autologin.isChecked();
+        autologin.setTextOn("Ja");
+        autologin.setTextOff("Nein");
+        autologin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(autologin_b)
+                {
+                    DatenbankManager db = new DatenbankManager(getParent());
+
+                    autologin_b = false;
+                    db.updateAutoLog(false);
+                }
+                else
+                {
+                    DatenbankManager db = new DatenbankManager(getParent());
+                    autologin_b = true;
+                    db.updateAutoLog(true);
+                }
+            }
+        });
+
     }
 
     //führt zur Registration, falls Button angeklickt wurde
@@ -28,6 +70,7 @@ public class Anmelden extends AppCompatActivity {
     {
         if (checkAnmeldung())
         {
+            //hier switch wert in datenbank aktuallisieren
             startActivity(new Intent(this, HomeScreen.class));
         }
     }
