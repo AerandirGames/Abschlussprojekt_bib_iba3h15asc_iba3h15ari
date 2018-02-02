@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Mobile-App</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_home_gui">home_gui</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- REGISTRIERUNGS GUI -->
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_registrieren">Registrieren</string>
+    <string name="passwordVerify">Passwort erneut eingeben</string>
+    <string name="mail">E-Mail</string>
+    <string name="anrede">Anrede</string>
+    <string name="title">Titel</string>
+    <string name="telefonNr">Telefonnummer</string>
+    <string name="next">Weiter</string>
+    <string name="back">Zurück</string>
+    <string name="agb">Ich habe die Datenschutzbestimmungen gelesen und akzeptiere die AGBs.</string>
+    <string name="praxisname">Praxisname</string>
+    <string name="praxismail">Praxismailadresse</string>
+    <string name="praxisfon">Praxistel.</string>
+    <string name="praxisadress">Adresse + Nr.</string>
+    <string name="city">Stadt</string>
+    <string name="plz">PLZ</string>
+
+    <string-array name="titleNames">
+        <item></item>
+        <item>Dr.</item>
+        <item>Dr. med.</item>
+        <item>Prof. Dr. med.</item>
+        <item>Prof. Dr.</item>
+    </string-array>
+
+    <string-array name="anredeEntries">
+        <item>----</item>
+        <item>Herr</item>
+        <item>Frau</item>
+    </string-array>
+
+    <!-- ANMELDE GUI -->
+    <string name="register">Registrieren</string>
+    <string name="login">Anmelden</string>
+    <string name="password">Passwort</string>
+    <string name="vorname">Vorname</string>
+    <string name="nachname">Nachname</string>
+    <string name="et_username_beschr">Benutzername oder E-Mail</string>
+    <string name="tv_passwortVergessen_beschr">Haben Sie Ihr Passwort vergessen?</string>
+    <string name="sw_angemeldetBleiben_beschr">angemeldet bleiben</string>
+
+
+    <!-- ANMELDE JAVA -->
+    <string name="incorrectData">Sie haben falsche Daten eingegeben</string>
+    <string name="ok">OK</string>
+
+    <!-- Nav Bar -->
+    <string name="faq">Frage stellen</string>
+    <string name="news">News</string>
+    <string name="rabatte">Rabatte</string>
+    <string name="nebenwirkungen">Nebenwirkungen melden</string>
+    <string name="kongresse">Kongresse</string>
+    <string name="fachinfos">Fachinfos</string>
+    <string name="einstellungen">Einstellungen</string>
+    <string name="abmelden">Abmelden</string>
+
+</resources>
