@@ -10,7 +10,7 @@
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="true"
-        android:smallScreens="true"/>
+        android:smallScreens="true" />
 
     <application
         android:allowBackup="true"
@@ -33,9 +33,9 @@
         <activity
             android:name=".Registrieren"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Rabatte" />
+        <activity android:name=".News"></activity>
     </application>
 
 </manifest>
