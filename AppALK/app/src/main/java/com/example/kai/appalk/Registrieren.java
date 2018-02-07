@@ -6,11 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TabHost;
 
 public class Registrieren extends AppCompatActivity
 {
     private Registrieren_SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
+    private TabHost =
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

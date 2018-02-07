@@ -29,20 +29,47 @@ public class Registrieren_Tab2 extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_tab2_person, container, false);
+
+        vorname = view.findViewById(R.id.et_vorname);
+        name = view.findViewById(R.id.et_nachname);
+        email = view.findViewById(R.id.et_mail);
+        telnr = view.findViewById(R.id.et_telNr);
+        pw = view.findViewById(R.id.et_passwort);
+        pwWiederholen = view.findViewById(R.id.et_passwortVerify);
+        titel = view.findViewById(R.id.ac_titel);
+        anrede = view.findViewById(R.id.sp_anrede);
+
         Button next = view.findViewById(R.id.but_tab2weiter);
         next.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                vorname = v.findViewById(R.id.et_vorname);
-                name = v.findViewById(R.id.et_nachname);
-                email = v.findViewById(R.id.et_mail);
-                telnr = v.findViewById(R.id.et_telNr);
-                pw = v.findViewById(R.id.et_passwort);
-                pwWiederholen = v.findViewById(R.id.et_passwortVerify);
-                titel = v.findViewById(R.id.ac_titel);
-                anrede = v.findViewById(R.id.sp_anrede);
+
+                if(vorname == null)
+                {
+                    System.out.println("vorname ist null");
+                }
+                if(name == null)
+                {
+                    System.out.println("name ist null");
+                }
+                if(email == null)
+                {
+                    System.out.println("mail ist null");
+                }
+                if(telnr == null)
+                {
+                    System.out.println("telnr ist null");
+                }
+                if(pw == null)
+                {
+                    System.out.println("pw ist null");
+                }
+                if(pwWiederholen == null)
+                {
+                    System.out.println("pww ist null");
+                }
                 if(datenKorrekt(vorname.getText().toString(),name.getText().toString(),email.getText().toString(),telnr.getText().toString(),pw.getText().toString(),pwWiederholen.getText().toString(),titel,anrede))
                 {
                     ((Registrieren) getActivity()).setCurrentItem(2, true);
@@ -76,7 +103,7 @@ public class Registrieren_Tab2 extends Fragment
 
         if(!vorname.equals("")  && !name.equals("") && istMail(mail)&& mail != null  && istTelNr(telnr) && telnr != null  && istSicheresPasswort(pw) && pw != null  && stimmenPasswoerterUeberein(pw,pwWiederholen)&& pwWiederholen != null )
         {
-
+                korrekt = true;
         }
         else
         {
@@ -95,24 +122,55 @@ public class Registrieren_Tab2 extends Fragment
             korrekt = true;
             System.out.println("email ist ok");
         }
-        System.out.println("email ist nicht ok");
+        else {
+            System.out.println("email ist nicht ok");
+        }
         return korrekt;
     }
 
     public boolean istTelNr(String telnr)
     {
-    return true;
+
+        boolean korrekt = false;
+        if(telnr.matches("^[0-9]*$"))
+        {
+            korrekt = true;
+            System.out.println("telnr ist ok");
+        }
+        else {
+            System.out.println("telnr ist nicht ok");
+        }
+        return korrekt;
+
     }
 
     public boolean istSicheresPasswort(String pw)
     {
-        return true;
 
+        boolean korrekt = false;
+        if(pw.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"))
+        {
+            korrekt = true;
+            System.out.println("pw ist ok");
+        }
+        else {
+            System.out.println("pw ist nicht ok");
+        }
+        return korrekt;
     }
 
     public boolean stimmenPasswoerterUeberein(String pw,String pwWiederholen)
     {
-        return true;
+        boolean korrekt = false;
+        if(pw.equals(pwWiederholen))
+        {
+            korrekt = true;
+            System.out.println("passwörter sind gleich");
+        }
+        else {
+            System.out.println("passwörter sind nicht gleich");
+        }
+        return korrekt;
 
     }
 
