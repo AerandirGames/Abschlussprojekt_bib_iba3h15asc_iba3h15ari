@@ -148,7 +148,7 @@ public class Registrieren_Tab2 extends Fragment
     {
 
         boolean korrekt = false;
-        if(pw.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"))
+        if(pw.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,25})"))
         {
             korrekt = true;
             System.out.println("pw ist ok");
