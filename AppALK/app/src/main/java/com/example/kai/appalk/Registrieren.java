@@ -12,7 +12,7 @@ public class Registrieren extends AppCompatActivity
 {
     private Registrieren_SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
-    private TabHost =
+    //private TabHost =
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

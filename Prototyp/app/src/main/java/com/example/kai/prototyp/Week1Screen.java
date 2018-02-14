@@ -21,6 +21,8 @@ public class Week1Screen extends AppCompatActivity
         videoView.setMediaController(new MediaController(this));
         videoView.setVideoURI(Uri.parse(path));
         videoView.requestFocus();
-        videoView.start();
+        videoView.stopPlayback();
+        videoView.pause();
+        //videoView.start();
     }
 }
