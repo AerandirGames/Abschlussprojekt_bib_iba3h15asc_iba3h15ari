@@ -10,20 +10,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
 
-public class Anmelden extends AppCompatActivity {
+public class Anmelden extends AppCompatActivity
+{
     String val;
     boolean autologin_b;
     Switch autologin;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         DatenbankManager dbm;
         Cursor res;
-
 
         dbm = new DatenbankManager(this);
         res = dbm.getSwitchValue();
         System.out.println(String.valueOf(res.getCount()));
-        if(res.getCount() == 0)
+        if (res.getCount() == 0)
         {
             System.out.println("schritt1");
             dbm.insertV();
@@ -33,13 +35,13 @@ public class Anmelden extends AppCompatActivity {
         }
         else
         {
-
-            while (res.moveToNext()) {
+            while (res.moveToNext())
+            {
                 val = res.getString(1);
                 System.out.println(val);
             }
 
-            if(Integer.parseInt(val) == 1)
+            if (Integer.parseInt(val) == 1)
             {
                 super.onCreate(savedInstanceState);
                 startActivity(new Intent(this, HomeScreen.class));
@@ -53,18 +55,19 @@ public class Anmelden extends AppCompatActivity {
 
                 autologin = (Switch) findViewById(R.id.sw_angemeldetBleiben);
 
-                autologin.setOnClickListener(new View.OnClickListener() {
+                autologin.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View view)
+                    {
                         autologin_b = autologin.isChecked();
-                        if(autologin_b)
+                        if (autologin_b)
                         {
                             System.out.println("auf true");
                             autologin_b = true;
                         }
                         else
                         {
-
                             System.out.println("auf false");
                             autologin_b = false;
                         }
@@ -72,32 +75,29 @@ public class Anmelden extends AppCompatActivity {
                 });
             }
         }
-
-
-
     }
 
     //führt zur Registration, falls Button angeklickt wurde
-    public void zurRegistration (View view)
+    public void zurRegistration(View view)
     {
         startActivity(new Intent(this, Registrieren.class));
     }
 
     //Führt zum HomeScreen der App, von dem aus alles gesteuert werden kann
-    public void zumHomeScreen (View view)
+    public void zumHomeScreen(View view)
     {
         if (checkAnmeldung())
         {
             //hier switch wert in datenbank aktuallisieren
-           DatenbankManager db = new DatenbankManager(this);
-           if(autologin_b && Integer.parseInt(val) == 0)
-           {
-               db.updateAutoLogTrue();
-           }
-           else if(autologin_b && Integer.parseInt(val) == 1)
-           {
-               db.updateAutoLogFalse();
-           }
+            DatenbankManager db = new DatenbankManager(this);
+            if (autologin_b && Integer.parseInt(val) == 0)
+            {
+                db.updateAutoLogTrue();
+            }
+            else if (autologin_b && Integer.parseInt(val) == 1)
+            {
+                db.updateAutoLogFalse();
+            }
 
 
             startActivity(new Intent(this, HomeScreen.class));
@@ -105,7 +105,7 @@ public class Anmelden extends AppCompatActivity {
     }
 
     //Checkt auf Richtigkeit der eingegebenden Daten
-    public boolean checkAnmeldung ()
+    public boolean checkAnmeldung()
     {
         boolean result = false;
         EditText usernameEditText = findViewById(R.id.et_username);
@@ -115,8 +115,10 @@ public class Anmelden extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.incorrectData)
                     .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
                             //do things
                         }
                     });

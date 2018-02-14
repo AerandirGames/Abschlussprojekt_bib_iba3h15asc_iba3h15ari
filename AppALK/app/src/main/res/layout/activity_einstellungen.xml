@@ -10,6 +10,7 @@
         android:layout_width="152dp"
         android:layout_height="91dp"
         android:text="@string/netzwerk"
+        android:onClick="zuEinstellungenNetzwerk"
         app:layout_constraintBottom_toTopOf="@+id/guideline29"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -19,6 +20,7 @@
         android:layout_width="152dp"
         android:layout_height="91dp"
         android:text="@string/account"
+        android:onClick="zuEinstellungenAccount"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -28,6 +30,7 @@
         android:layout_width="152dp"
         android:layout_height="91dp"
         android:text="@string/impressum"
+        android:onClick="zuEinstellungenImpressum"
         app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
