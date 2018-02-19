@@ -97,9 +97,9 @@ public class HomeScreen extends AppCompatActivity
         {
             startActivity(new Intent(this, News.class));
         }
-        else if (id == R.id.rabatte)
+        else if (id == R.id.kontakt)
         {
-            startActivity(new Intent(this, Rabatte.class));
+            startActivity(new Intent(this, Kontakt.class));
         }
         else if (id == R.id.kongresse)
         {
@@ -116,20 +116,6 @@ public class HomeScreen extends AppCompatActivity
         else if (id == R.id.einstellungen)
         {
             startActivity(new Intent(this, Einstellungen.class));
-        }
-        else if (id == R.id.abmelden)
-        {
-            DatenbankManager dbm =new DatenbankManager(this);
-            String input = "";
-            Cursor res = dbm.getSwitchValue();
-            while (res.moveToNext()) {
-                input = res.getString(1);
-            }
-            if(input.equals("1")) {
-
-                dbm.updateAutoLogFalse();
-            }
-            startActivity(new Intent(this, Anmelden.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -55,20 +55,20 @@
     <string name="netzwerk">Netzwerk</string>
     <string name="account">Account</string>
     <string name="impressum">Impressum</string>
+    <string name="abmelden">Abmelden</string>
 
     <!-- ANMELDE JAVA -->
     <string name="incorrectData">Sie haben falsche Daten eingegeben</string>
     <string name="ok">OK</string>
 
     <!-- Nav Bar -->
-    <string name="faq">Frage stellen</string>
-    <string name="news">News</string>
-    <string name="rabatte">Rabatte</string>
+    <string name="faq">Messenger</string>
+    <string name="news">Neuigkeiten</string>
+    <string name="kontakt">Kontakt</string>
     <string name="nebenwirkungen">Nebenwirkungen melden</string>
-    <string name="kongresse">Kongresse</string>
+    <string name="kongresse">Kongressinformationen</string>
     <string name="fachinfos">Fachinfos</string>
     <string name="einstellungen">Einstellungen</string>
-    <string name="abmelden">Abmelden</string>
 
     <!-- Messenger -->
     <string name="firstMessage">Hallo, ich bin Ally.\nMeine Aufgabe ist es, Sie durch den Messenger zu leiten.\nIch kann Ihnen leichte Fragen eigenständig beantworten. Wenn ich mal nicht weiter weiß kriegen Sie eine Auswahl an Kontaktmöglichkeiten an einen ALK-Mitarbeiter. Dieser wird sich dann innerhalb von 24 Stunden bei Ihnen melden.</string>

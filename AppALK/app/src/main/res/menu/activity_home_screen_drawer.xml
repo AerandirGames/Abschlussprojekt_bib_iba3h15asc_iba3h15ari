@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_news"
             android:title="@string/news" />
         <item
-            android:id="@+id/rabatte"
+            android:id="@+id/kontakt"
             android:icon="@drawable/ic_rabatt"
-            android:title="@string/rabatte" />
+            android:title="@string/kontakt" />
         <item
             android:id="@+id/nebenwirkungen"
             android:icon="@drawable/ic_nebenwirkungen"
@@ -36,10 +36,6 @@
                 android:id="@+id/einstellungen"
                 android:icon="@drawable/ic_settings"
                 android:title="@string/einstellungen" />
-            <item
-                android:id="@+id/abmelden"
-                android:icon="@drawable/ic_exit"
-                android:title="@string/abmelden" />
         </menu>
     </item>
 

@@ -46,7 +46,8 @@
         <activity android:name=".Einstellungen" />
         <activity android:name=".EinstellungenNetzwerk" />
         <activity android:name=".EinstellungenAccount" />
-        <activity android:name=".EinstellungenImpressum"></activity>
+        <activity android:name=".EinstellungenImpressum" />
+        <activity android:name=".Kontakt"></activity>
     </application>
 
 </manifest>
