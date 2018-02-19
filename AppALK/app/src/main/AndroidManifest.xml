@@ -39,7 +39,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Fachinfos" />
-        <activity android:name=".Faq" />
+        <activity android:name=".Messenger" />
         <activity android:name=".Kongressinfos" />
         <activity android:name=".News" />
         <activity android:name=".Rabatte" />

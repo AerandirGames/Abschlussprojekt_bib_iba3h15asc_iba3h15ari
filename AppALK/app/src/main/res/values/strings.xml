@@ -70,4 +70,20 @@
     <string name="einstellungen">Einstellungen</string>
     <string name="abmelden">Abmelden</string>
 
+    <!-- Messenger -->
+    <string name="firstMessage">Hallo, ich bin Ally.\nMeine Aufgabe ist es, Sie durch den Messenger zu leiten.\nIch kann Ihnen leichte Fragen eigenständig beantworten. Wenn ich mal nicht weiter weiß kriegen Sie eine Auswahl an Kontaktmöglichkeiten an einen ALK-Mitarbeiter. Dieser wird sich dann innerhalb von 24 Stunden bei Ihnen melden.</string>
+    <string name="errorMessage">Sie haben eine Frage gestellt, die ich Ihnen leider nicht beantworten kann.\nBitte wählen Sie unten eine Kontaktmöglichkeit aus, dann wird sich ein Mitarbeiter bei Ihnen melden.\nSMS\nAnruf\nEmail\nBesuch Ihres Außendienstlers</string>
+    <string-array name="themenEntries">
+        <item>-- Bitte wählen Sie ein Thema --</item>
+        <item>Ich habe eine Frage zu Ihren Produkten</item>
+        <item>Ich habe eine Frage zu meiner Lieferung</item>
+        <item>Ich habe eine individuelle Frage</item>
+    </string-array>
+    <string-array name="produktEntries">
+        <item>-- Bitte wählen Sie ein Thema --</item>
+        <item>Ich habe eine Frage zu Ihren Produkten</item>
+        <item>Ich habe eine Frage zu meiner Lieferung</item>
+        <item>Ich habe eine individuelle Frage</item>
+    </string-array>
+
 </resources>

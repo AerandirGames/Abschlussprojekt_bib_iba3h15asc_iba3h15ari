@@ -91,7 +91,7 @@ public class HomeScreen extends AppCompatActivity
 
         if (id == R.id.faq)
         {
-            startActivity(new Intent(this, Faq.class));
+            startActivity(new Intent(this, Messenger.class));
         }
         else if (id == R.id.news)
         {
