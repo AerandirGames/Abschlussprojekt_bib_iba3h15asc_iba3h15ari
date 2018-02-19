@@ -51,6 +51,10 @@
     <string name="tv_passwortVergessen_beschr">Haben Sie Ihr Passwort vergessen?</string>
     <string name="sw_angemeldetBleiben_beschr">angemeldet bleiben</string>
 
+    <!-- Einstellungen GUI -->
+    <string name="netzwerk">Netzwerk</string>
+    <string name="account">Account</string>
+    <string name="impressum">Impressum</string>
 
     <!-- ANMELDE JAVA -->
     <string name="incorrectData">Sie haben falsche Daten eingegeben</string>

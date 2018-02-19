@@ -12,7 +12,7 @@ public class Nebenwirkungen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_einstellungen);
+        setContentView(R.layout.activity_nebenwirkungen);
 
     }
 }

@@ -103,7 +103,7 @@ public class HomeScreen extends AppCompatActivity
         }
         else if (id == R.id.kongresse)
         {
-            startActivity(new Intent(this, Kongresse.class));
+            startActivity(new Intent(this, Kongressinfos.class));
         }
         else if (id == R.id.nebenwirkungen)
         {
