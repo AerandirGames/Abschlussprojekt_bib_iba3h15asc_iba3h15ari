@@ -42,7 +42,6 @@
         <activity android:name=".Messenger" />
         <activity android:name=".Kongressinfos" />
         <activity android:name=".News" />
-        <activity android:name=".Rabatte" />
         <activity android:name=".Einstellungen" />
         <activity android:name=".EinstellungenNetzwerk" />
         <activity android:name=".EinstellungenAccount" />
