@@ -81,9 +81,24 @@
     </string-array>
     <string-array name="produktEntries">
         <item>-- Bitte wählen Sie ein Thema --</item>
-        <item>Ich habe eine Frage zu Ihren Produkten</item>
-        <item>Ich habe eine Frage zu meiner Lieferung</item>
-        <item>Ich habe eine individuelle Frage</item>
+        <item>SCIT</item>
+        <item>SLIT</item>
+        <item>Diagnostik</item>
     </string-array>
+    <string-array name="lieferungEntries">
+        <item>-- Bitte wählen Sie ein Thema --</item>
+        <item>Meine Lieferung kommt nicht an</item>
+        <item>Ich habe etwas falsches bestellt</item>
+        <item>Wann kommt meine Lieferung?</item>
+    </string-array>
+    <string-array name="indFrageEntries">
+        <item>-- Wie können wir sie erreichen? --</item>
+        <item>SMS</item>
+        <item>Anruf</item>
+        <item>E-Mail</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

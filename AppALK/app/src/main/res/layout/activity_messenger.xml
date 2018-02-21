@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kai.appalk.Messenger">
+    tools:context="com.example.kai.appalk.Messenger"
+    android:focusable="true" android:focusableInTouchMode="true">
 
     <ScrollView
         android:id="@+id/ScrollView01"
         android:layout_width="0dp"
-        android:layout_height="258dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -49,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:visibility="invisible"
+        android:entries="@array/produktEntries"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sp_thema" />
@@ -59,17 +61,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:visibility="invisible"
+        android:entries="@array/lieferungEntries"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_thema" />
+
+    <Spinner
+        android:id="@+id/sp_infoIndFrage"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        android:entries="@array/indFrageEntries"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sp_thema" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/but_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
-        android:text="Button"
+        android:text="send"
+        android:onClick="sendTextMessage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -82,9 +97,8 @@
         android:layout_marginLeft="16dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:windowSoftInputMode="stateHidden"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/but_send"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <View
