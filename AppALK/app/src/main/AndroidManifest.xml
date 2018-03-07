@@ -2,10 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kai.appalk">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_URI_PERMISSION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <supports-screens
         android:largeScreens="true"
@@ -32,8 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Nebenwirkungen"
-            android:label="Nebenwirkungen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Nebenwirkungen" />
         <activity
             android:name=".Registrieren"
             android:label="@string/title_activity_main"
@@ -46,7 +51,20 @@
         <activity android:name=".EinstellungenNetzwerk" />
         <activity android:name=".EinstellungenAccount" />
         <activity android:name=".EinstellungenImpressum" />
-        <activity android:name=".Kontakt"></activity>
+        <activity android:name=".Kontakt" />
+        <activity
+            android:name=".NebenwirkungenFormular"
+            android:label="NebenwirkungenFormular" />
+
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="${applicationId}.my.package.name.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>
