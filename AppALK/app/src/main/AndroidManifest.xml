@@ -39,8 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Nebenwirkungen"
-            android:label="Nebenwirkungen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Nebenwirkungen"/>
         <activity
             android:name=".Registrieren"
             android:label="@string/title_activity_main"
@@ -58,6 +57,10 @@
         <activity android:name=".Messenger"
             android:label="@string/title_activity_home_screen"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".NebenwirkungenFormular"
+            android:label="NebenwirkungenFormular" />
+
         <provider
             android:name=".GenericFileProvider"
             android:authorities="${applicationId}.my.package.name.provider"
