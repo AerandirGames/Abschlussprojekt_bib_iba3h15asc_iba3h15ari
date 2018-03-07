@@ -38,7 +38,6 @@ public class Anmelden extends AppCompatActivity
             while (res.moveToNext())
             {
                 val = res.getString(1);
-                System.out.println(val);
             }
 
             if (Integer.parseInt(val) == 1)

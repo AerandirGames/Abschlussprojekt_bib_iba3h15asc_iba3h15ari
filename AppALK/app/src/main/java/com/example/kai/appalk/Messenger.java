@@ -1,8 +1,16 @@
 package com.example.kai.appalk;
 
 
+import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,15 +19,16 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Messenger extends AppCompatActivity
+
+public class Messenger extends HomeScreen
 {
     private EditText frageInput;
     private String user1 = "user", user2 = "Ally";
     public static ArrayList<MessengerMessage> messageList;
     public static MessengerMessageAdapter messageAdapter;
     ListView msgListView;
+    public Button senden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,7 +36,12 @@ public class Messenger extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
 
-
+        senden = findViewById(R.id.but_send);
+        senden.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendTextMessage(v);
+            }
+        });
 
         final Spinner sp_thema = findViewById(R.id.sp_thema);
         final Spinner sp_infoProdukt = findViewById(R.id.sp_infoProdukt);
@@ -67,14 +81,16 @@ public class Messenger extends AppCompatActivity
                         break;
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView)
             {
 
             }
+
         });
     }
+
+
 
     public void sendTextMessage(View v)
     {
