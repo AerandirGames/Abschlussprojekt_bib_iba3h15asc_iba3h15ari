@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kai.appalk">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -39,8 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Nebenwirkungen"
-            android:label="Nebenwirkungen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Nebenwirkungen" />
         <activity
             android:name=".Registrieren"
             android:label="@string/title_activity_main"
@@ -52,12 +50,12 @@
         <activity android:name=".EinstellungenNetzwerk" />
         <activity android:name=".EinstellungenAccount" />
         <activity android:name=".EinstellungenImpressum" />
-        <activity android:name=".Kontakt"
-            android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Messenger"
-            android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar"/>
+<<<<<<< HEAD
+        <activity android:name=".Kontakt" />
+        <activity
+            android:name=".NebenwirkungenFormular"
+            android:label="NebenwirkungenFormular" />
+
         <provider
             android:name=".GenericFileProvider"
             android:authorities="${applicationId}.my.package.name.provider"
@@ -67,6 +65,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+=======
+        <activity android:name=".Kontakt"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Messenger"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/AppTheme.NoActionBar"/>
+>>>>>>> 18b13ddbca7aef14cff3210b5528512250e846d5
     </application>
 
 </manifest>

@@ -80,58 +80,17 @@ public class NebenwirkungenFormular extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(i, 0);
+
             }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && resultCode == RESULT_OK)
-        {
-            photo = (Bitmap) data.getExtras().get("data");
-            iv.setImageBitmap(photo);
-            BitmapDrawable drawable = new BitmapDrawable(getResources(), photo);
-            imgUri = Environment.getExternalStorageDirectory().getAbsolutePath();
-            File dir = new File(imgUri);
-            File file = new File(dir, "image.jpeg");
-            FileOutputStream fOut = null;
-            try
-            {
-                fOut = new FileOutputStream(file);
-                photo.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
-                fOut.flush();
-                fOut.close();
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
 
     public void nwfSendMail(View view)
     {
         if (checkFormular())
         {
-            Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-            emailIntent.setType("application/image");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"alkpv@trash-mail.com"});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Nebenwirkungsmeldung");
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "Informationen Patient:\n" +
-                    "Geburtsdatum: " + gebDat.getText().toString() + ", Geschlecht: " + getGeschlecht() + ", Größe: "
-                    + groesse.getText().toString() + "cm, Gewicht: " + gewicht.getText().toString() + "kg\nInformationen Präparat:\n" +
-                    "Name des Präparats: " + name.getText().toString() + ", Chargen-Nr: " + cNr.getText().toString() + "\n" +
-                    "Informationen der Reaktion:\nBeschreibung der Reaktion: " + beschr.getText().toString());
-            emailIntent.putExtra(Intent.EXTRA_STREAM, photo);
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
         }
     }
 
