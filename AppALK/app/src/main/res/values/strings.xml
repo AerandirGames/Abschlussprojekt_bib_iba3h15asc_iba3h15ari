@@ -121,6 +121,8 @@
     <string name="nwfReactHeader">Informationen Reaktion</string>
     <string name="nwfReactDesc">Beschreibung der Reaktion</string>
     <string name="nwfReactFoto">Foto</string>
+    <string name="nwfMeldenderHeader">Informationen Meldender</string>
+    <string name="nwfMeldenderNr">Telefonnummer</string>
     <string name="nwfSend">Abschicken</string>
 
     <!-- TODO: Remove or change this placeholder text -->
