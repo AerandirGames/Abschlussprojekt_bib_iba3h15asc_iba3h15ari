@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Mobile-App</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_home_gui">home_gui</string>
@@ -108,7 +108,7 @@
     </string-array>
 
     <!-- Nebenwirkungen -->
-    <string name="nwText">Pharmaunternehmen haben laut Arzneimittelgesetz die Pflicht, bekannt gewordene Nebenwirkungen zu dokumentieren. Falls Sie eine Nebenwirkung zu melden haben, rufen Sie uns bitte unter der Tel.-Nr. 040-703845-300 an oder kontaktieren Sie uns per E-Mail. In dringenden Notfällen können Sie uns auch unter der Tel.-Nr. 040-703845-333 erreichen.</string>
+    <string name="nwText">Pharmaunternehmen haben laut Arzneimittelgesetz die Pflicht, bekannt gewordene Nebenwirkungen zu dokumentieren. Falls Sie eine Nebenwirkung zu melden haben, rufen Sie uns bitte unter der Tel.–Nr. 040-703845-300 an oder kontaktieren Sie uns per E-Mail. In dringenden Notfällen können Sie uns auch unter der Tel.-Nr. 040-703845-333 erreichen.</string>
     <string name="nwSlitHeader">Nebenwirkungen sublinguale Immuntherapie</string>
     <string name="nwSlitText">Seit ihrer Einführung Anfang der 1990er Jahre wurde die Sicherheit sublingualer Immuntherapie sowohl bei Erwachsenen als auch Kindern in mehreren Studien sowie durch jahrzehntelange klinische Erfahrungen evaluiert.\nMilde Reaktionen auf sublinguale Immuntherapie können auftreten, stellen aber normalerweise kein Hindernis für eine Fortsetzung der Behandlung dar. Die am häufigsten gemeldeten Arzneimittelnebenwirkungen sind örtliche Reaktionen und treten häufiger auf, wenn höhere Allergendosen verabreicht werden.\nWährend der ersten Behandlungswoche:\nBei der sublingualen Immuntherapie können Nebenwirkungen wie Juckreiz und Schwellungen in der Mundhöhle auftreten. Die Reaktionen treten normalerweise nach der ersten Behandlung und bei den meisten Patienten auch nach wiederholter Verabreichung auf, werden allerdings mit fortschreitender Behandlung immer seltener und sind weniger ausgeprägt (1). Im Fall bedeutender unerwünschter lokaler Reaktionen sollte eine symptomatische Medikation etwa mit Antihistaminika erwogen werden.\nSystemische Reaktionen wie Urtikaria (Nesselsucht) und Asthma - und in seltenen Fällen auch schwere systemische Reaktionen wie Anaphylaxie - wurden ebenfalls beobachtet.\nDa sublinguale Immuntherapieprodukte in der Regel selbst verabreicht werden, sollten die Patienten immer klare schriftliche Anweisungen für den Umgang mit Nebenwirkungen erhalten und darauf hingewiesen werden, ihr Medikament an einem sicheren Ort und für Kinder unzugänglich aufzubewahren.</string>
     <string name="nwBtn">Zum Formular</string>
@@ -130,6 +130,8 @@
     <string name="nwfReactHeader">Informationen Reaktion</string>
     <string name="nwfReactDesc">Beschreibung der Reaktion</string>
     <string name="nwfReactFoto">Foto</string>
+    <string name="nwfMeldenderHeader">Informationen Meldender</string>
+    <string name="nwfMeldenderNr">Telefonnummer</string>
     <string name="nwfSend">Abschicken</string>
 
     <!-- TODO: Remove or change this placeholder text -->

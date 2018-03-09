@@ -203,19 +203,17 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:onClick="nwfSendMail"
             android:text="@string/nwfSend"
-            app:layout_constraintEnd_toStartOf="@+id/guideline36"
-            app:layout_constraintTop_toBottomOf="@+id/listView" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <ImageView
-            android:id="@+id/listView"
+            android:id="@+id/imageView3"
             android:layout_width="86dp"
             android:layout_height="53dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline36"
             app:layout_constraintTop_toBottomOf="@+id/button7" />
 
