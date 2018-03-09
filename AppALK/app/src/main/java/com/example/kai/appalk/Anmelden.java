@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -31,7 +32,7 @@ public class Anmelden extends AppCompatActivity
             dbm.insertV();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_anmelden_gui);
-            getSupportActionBar().setTitle(R.string.login);
+            //getSupportActionBar().setTitle(R.string.login);
         }
         else
         {
@@ -50,11 +51,29 @@ public class Anmelden extends AppCompatActivity
                 System.out.println("db eintrag ist 0");
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_anmelden_gui);
-                getSupportActionBar().setTitle(R.string.login);
+               // getSupportActionBar().setTitle(R.string.login);
 
                 autologin = (Switch) findViewById(R.id.sw_angemeldetBleiben);
+                autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+                {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+                    {
+                        autologin_b = autologin.isChecked();
+                        if (autologin_b)
+                        {
+                            System.out.println("auf true");
+                            autologin_b = true;
+                        }
+                        else
+                        {
+                            System.out.println("auf false");
+                            autologin_b = false;
+                        }
+                    }
+                });
 
-                autologin.setOnClickListener(new View.OnClickListener()
+               /* autologin.setOnClickListener(new View.OnClickListener()
                 {
                     @Override
                     public void onClick(View view)
@@ -71,7 +90,7 @@ public class Anmelden extends AppCompatActivity
                             autologin_b = false;
                         }
                     }
-                });
+                });*/
             }
         }
     }

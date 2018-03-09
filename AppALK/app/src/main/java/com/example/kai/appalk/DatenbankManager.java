@@ -20,7 +20,6 @@ public class DatenbankManager extends SQLiteOpenHelper{
     public static final String TABLE_EINSTELLUNGEN = "einstellungen";
     public static final String AUTO_LOGIN = "autologin";
     public static final String ID = "id";
-    public int ph;
     public static final String SQL_CREATE =
             "create table " +  TABLE_EINSTELLUNGEN + "(" +
                     ID + " integer primary key autoincrement, " +
