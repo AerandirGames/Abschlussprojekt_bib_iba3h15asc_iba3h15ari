@@ -1,5 +1,7 @@
 package com.example.kai.appalk;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 /**
@@ -21,6 +24,7 @@ public class Registrieren_Tab3 extends Fragment
     private String praxisName, adresse, plz, stadt, praxisTel, praxisMail;
     private CheckBox checkBox;
     private MySQLHandler db;
+    private User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -50,10 +54,44 @@ public class Registrieren_Tab3 extends Fragment
                 praxisMail = et_praxisMail.getText().toString();
                 tab2entries = getEntriesFromTab2();
 
-                if (checkBox.isChecked())
+
+                //if (checkBox.isEnabled())
+                //{
+                    if (praxisMail.matches("(\\w{1,}(\\w|\\.){1,})@(\\w{1,}(\\w|\\.){1,}\\.\\w{2,})") || praxisMail.isEmpty())
+                    {
+                        user = new User(tab2entries[0], tab2entries[1], tab2entries[2], tab2entries[3], tab2entries[4], tab2entries[5], tab2entries[6],
+                                praxisName, adresse, plz, stadt, praxisTel, praxisMail);
+                        writeInMySQL();
+                    }
+                    else
+                    {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("Bitte geben Sie eine gültige E-Mail Adresse ein!")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
+                                {
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+               /* }
+                else
                 {
-                    writeInMySQL();
-                }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Sie müssen unsere Datenschutzbestimmungen und AGBs akzeptieren!")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }*/
             }
         });
 
@@ -69,9 +107,9 @@ public class Registrieren_Tab3 extends Fragment
         return view;
     }
 
-    public void writeInMySQL ()
+    public void writeInMySQL()
     {
-        db = new MySQLHandler(getApplicationContext());
+        db = new MySQLHandler(this.getContext());
     }
 
     public String[] getEntriesFromTab2()

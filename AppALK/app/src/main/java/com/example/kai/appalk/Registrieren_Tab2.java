@@ -227,7 +227,7 @@ public class Registrieren_Tab2 extends Fragment
 
     public String[] getEntries()
     {
-        return new String[]{vorname, name, email, telnr, pw, pwWiederholen, anrede, titel};
+        return new String[]{anrede, titel, vorname, name, email, telnr, pw};
 
     }
 }
