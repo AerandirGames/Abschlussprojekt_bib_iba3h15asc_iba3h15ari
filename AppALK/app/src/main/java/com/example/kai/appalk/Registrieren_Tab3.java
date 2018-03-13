@@ -23,12 +23,12 @@ public class Registrieren_Tab3 extends Fragment
     private EditText et_praxisName, et_adresse, et_plz, et_stadt, et_praxisTel, et_praxisMail;
     private String praxisName, adresse, plz, stadt, praxisTel, praxisMail;
     private CheckBox checkBox;
-<<<<<<< HEAD
+
     //private MySQLHandler db;
-=======
-    private MySQLHandler db;
+
+   // private MySQLHandler db;
     private User user;
->>>>>>> 0837cf50c0dbc7e57539d298ef5928b4646f6418
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -65,7 +65,7 @@ public class Registrieren_Tab3 extends Fragment
                     {
                         user = new User(tab2entries[0], tab2entries[1], tab2entries[2], tab2entries[3], tab2entries[4], tab2entries[5], tab2entries[6],
                                 praxisName, adresse, plz, stadt, praxisTel, praxisMail);
-                        writeInMySQL();
+                     //   writeInMySQL();
                     }
                     else
                     {
@@ -100,7 +100,7 @@ public class Registrieren_Tab3 extends Fragment
                     AlertDialog alert = builder.create();
                     alert.show();
                 }*/
->>>>>>> 0837cf50c0dbc7e57539d298ef5928b4646f6418
+
             }
         });
 
@@ -116,17 +116,17 @@ public class Registrieren_Tab3 extends Fragment
         return view;
     }
 
-<<<<<<< HEAD
+
     /*public void writeInMySQL ()
     {
         db = new MySQLHandler(getApplicationContext());
     }*/
-=======
-    public void writeInMySQL()
+
+    /*public void writeInMySQL()
     {
         db = new MySQLHandler(this.getContext());
     }
->>>>>>> 0837cf50c0dbc7e57539d298ef5928b4646f6418
+*/
 
     public String[] getEntriesFromTab2()
     {

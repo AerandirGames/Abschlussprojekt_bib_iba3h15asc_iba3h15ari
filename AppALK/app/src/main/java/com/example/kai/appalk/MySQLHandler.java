@@ -16,8 +16,8 @@ import android.database.sqlite.SQLiteOpenHelper;
     private static final String TABLE_LOGIN="login";
 
 <<<<<<< HEAD
-}*/
-=======
+}
+
     public MySQLHandler(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,4 +40,5 @@ import android.database.sqlite.SQLiteOpenHelper;
 
     }
 }
->>>>>>> 0837cf50c0dbc7e57539d298ef5928b4646f6418
+
+*/

@@ -52,7 +52,7 @@ public class Messenger extends HomeScreen
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+/*
         final Spinner sp_thema = findViewById(R.id.sp_thema);
         final Spinner sp_infoProdukt = findViewById(R.id.sp_infoProdukt);
         final Spinner sp_infoLieferung = findViewById(R.id.sp_infoLieferung);
@@ -97,6 +97,6 @@ public class Messenger extends HomeScreen
 
             }
 
-        });
+        });*/
     }
 }
