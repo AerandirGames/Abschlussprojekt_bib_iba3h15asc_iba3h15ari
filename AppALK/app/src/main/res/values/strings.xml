@@ -35,6 +35,15 @@
         <item>Prof. Dr.</item>
     </string-array>
 
+    <string-array name="kontaktArray">
+        <item>-</item>
+        <item>Deutsche Zentrale</item>
+        <item>Kundenservice</item>
+        <item>Medizinischer Kundenservice</item>
+        <item>Buchhaltung</item>
+        <item>Arzneimittel-Sicherheit</item>
+    </string-array>
+
     <string-array name="anredeEntries">
         <item>-</item>
         <item>Herr</item>
