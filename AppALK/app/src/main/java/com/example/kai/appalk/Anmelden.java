@@ -44,7 +44,7 @@ public class Anmelden extends AppCompatActivity
             if (Integer.parseInt(val) == 1)
             {
                 super.onCreate(savedInstanceState);
-                startActivity(new Intent(this, HomeScreen.class));
+                startActivity(new Intent(this, Messenger.class));
             }
             else
             {
@@ -54,6 +54,7 @@ public class Anmelden extends AppCompatActivity
                // getSupportActionBar().setTitle(R.string.login);
 
                 autologin = (Switch) findViewById(R.id.sw_angemeldetBleiben);
+
                 autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
                 {
                     @Override
@@ -118,7 +119,7 @@ public class Anmelden extends AppCompatActivity
             }
 
 
-            startActivity(new Intent(this, HomeScreen.class));
+            startActivity(new Intent(this, Messenger.class));
         }
     }
 

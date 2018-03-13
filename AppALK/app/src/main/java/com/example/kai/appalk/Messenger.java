@@ -24,11 +24,6 @@ import java.util.ArrayList;
 public class Messenger extends HomeScreen
 {
     private EditText frageInput;
-    private String user1 = "user", user2 = "Ally";
-    public static ArrayList<MessengerMessage> messageList;
-    public static MessengerMessageAdapter messageAdapter;
-    ListView msgListView;
-    public Button senden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,12 +31,27 @@ public class Messenger extends HomeScreen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
 
-        senden = findViewById(R.id.but_send);
-        senden.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                sendTextMessage(v);
-            }
-        });
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        try
+        {
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
+        catch(NullPointerException n)
+        {
+            System.out.println("Nullpointer Exception");
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         final Spinner sp_thema = findViewById(R.id.sp_thema);
         final Spinner sp_infoProdukt = findViewById(R.id.sp_infoProdukt);
@@ -88,25 +98,5 @@ public class Messenger extends HomeScreen
             }
 
         });
-    }
-
-
-
-    public void sendTextMessage(View v)
-    {
-        frageInput = findViewById(R.id.et_frageInput);
-
-        messageList = new ArrayList<>();
-        messageAdapter = new MessengerMessageAdapter(this, messageList);
-        msgListView.setAdapter(messageAdapter);
-
-        String message = frageInput.getEditableText().toString();
-        if (!message.equalsIgnoreCase("")) {
-            final MessengerMessage msg = new MessengerMessage(user1, user2, message, true);
-            msg.body = message;
-            frageInput.setText("");
-            messageAdapter.add(msg);
-            messageAdapter.notifyDataSetChanged();
-        }
     }
 }

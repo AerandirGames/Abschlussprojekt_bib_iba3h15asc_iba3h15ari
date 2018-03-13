@@ -52,12 +52,13 @@
     <TextView
         android:id="@+id/kontaktanzeige"
         android:layout_width="265dp"
-        android:layout_height="152dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -71,4 +72,20 @@
         app:layout_constraintBottom_toTopOf="@+id/kontaktdaten"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/emailKontakt"
+        android:layout_width="117dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="E-Mail"
+        android:onClick="senden"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kontaktanzeige"
+        app:layout_constraintVertical_bias="0.2" />
 </android.support.constraint.ConstraintLayout>

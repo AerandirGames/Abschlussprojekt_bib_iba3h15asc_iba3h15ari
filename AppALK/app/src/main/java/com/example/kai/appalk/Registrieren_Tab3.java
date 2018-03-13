@@ -20,7 +20,7 @@ public class Registrieren_Tab3 extends Fragment
     private EditText et_praxisName, et_adresse, et_plz, et_stadt, et_praxisTel, et_praxisMail;
     private String praxisName, adresse, plz, stadt, praxisTel, praxisMail;
     private CheckBox checkBox;
-    private MySQLHandler db;
+    //private MySQLHandler db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -52,7 +52,7 @@ public class Registrieren_Tab3 extends Fragment
 
                 if (checkBox.isChecked())
                 {
-                    writeInMySQL();
+                   // writeInMySQL();
                 }
             }
         });
@@ -69,10 +69,10 @@ public class Registrieren_Tab3 extends Fragment
         return view;
     }
 
-    public void writeInMySQL ()
+    /*public void writeInMySQL ()
     {
         db = new MySQLHandler(getApplicationContext());
-    }
+    }*/
 
     public String[] getEntriesFromTab2()
     {
