@@ -1,12 +1,18 @@
 package com.example.kai.appalk;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.ExpandableListView;
+
+import com.github.barteksc.pdfviewer.PDFView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +25,8 @@ public class Fachinfos extends HomeScreen
     private ExpandableListAdapter listAdapter;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listHash;
+    //private PDFView pdfView;
+    private String dateiName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,10 +55,26 @@ public class Fachinfos extends HomeScreen
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        listView = (ExpandableListView) findViewById(R.id.fi_expLv);
+        //pdfView = (PDFView) findViewById(R.id.pdfView);
+        //pdfView.setVisibility(View.INVISIBLE);
+
+        listView = findViewById(R.id.fi_expLv);
+        //listView.setVisibility(View.VISIBLE);
         initData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener()
+        {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l)
+            {
+                String a = ""+listAdapter.getGroup(i);
+                String b = ""+listAdapter.getChild(i, i1);
+                pdfShow(a, b);
+                return false;
+            }
+        });
     }
 
     private void initData()
@@ -70,29 +94,29 @@ public class Fachinfos extends HomeScreen
         listDataHeader.add("Diagnostika");
 
         List<String> acarizax = new ArrayList<>();
-        acarizax.add("GIFI ACARIZAX");
+        acarizax.add("Gebrauchs- und Fachinformation");
 
         List<String> depotSQ = new ArrayList<>();
-        depotSQ.add("GIFI Baumpollen");
-        depotSQ.add("GIFI Gräserpollen");
-        depotSQ.add("GIFI Insekten");
-        depotSQ.add("GIFI Milben");
-        depotSQ.add("GIFI NPP");
-        depotSQ.add("GIFI N");
+        depotSQ.add("Gebrauchs- und Fachinformation Baumpollen");
+        depotSQ.add("Gebrauchs- und Fachinformation Gräserpollen");
+        depotSQ.add("Gebrauchs- und Fachinformation Insekten");
+        depotSQ.add("Gebrauchs- und Fachinformation Milben");
+        depotSQ.add("Gebrauchs- und Fachinformation NPP");
+        depotSQ.add("Gebrauchs- und Fachinformation N");
 
         List<String> startSQ = new ArrayList<>();
-        startSQ.add("GIFI Birke und Frühblüher");
-        startSQ.add("GIFI Gräsermischung und Roggen");
+        startSQ.add("Gebrauchs- und Fachinformation Birke und Frühblüher");
+        startSQ.add("Gebrauchs- und Fachinformation Gräsermischung und Roggen");
 
         List<String> avanz = new ArrayList<>();
-        avanz.add("Gräser Fachinformation");
-        avanz.add("Gräser Gebrauchsinformation");
-        avanz.add("Bäume Fachinformationen");
-        avanz.add("Bäume Gebrauchsinformation");
-        avanz.add("Milben Fachinformation");
-        avanz.add("Milben Gebrauchsinformation");
-        avanz.add("Diverse Allergene Fachinformation");
-        avanz.add("Diverse Allergene Gebrauchsinformation");
+        avanz.add("Fachinformation Gräser");
+        avanz.add("Gebrauchsinformation Gräser");
+        avanz.add("Fachinformationen Bäume");
+        avanz.add("Gebrauchsinformation Bäume");
+        avanz.add("Fachinformation Milben");
+        avanz.add("Gebrauchsinformation Milben");
+        avanz.add("Fachinformation Diverse Allergene");
+        avanz.add("Gebrauchsinformation Diverse Allergene");
 
         List<String> grazax = new ArrayList<>();
         grazax.add("Fachinformation");
@@ -102,20 +126,20 @@ public class Fachinfos extends HomeScreen
         pangramin.add("Gebrauchs- und Fachinformation");
 
         List<String> slitone = new ArrayList<>();
-        slitone.add("Gräser Fachinformation");
-        slitone.add("Gräser Gebrauchsinformation");
-        slitone.add("Frühblüher Fachinformation");
-        slitone.add("Frühblüher Gebrauchsinformation");
-        slitone.add("Milben Fachinformation");
-        slitone.add("Milben Gebrauchsinformation");
+        slitone.add("Fachinformation Gräser");
+        slitone.add("Gebrauchsinformation Gräser");
+        slitone.add("Fachinformation Frühblüher");
+        slitone.add("Gebrauchsinformation Frühblüher");
+        slitone.add("Fachinformation Milben");
+        slitone.add("Gebrauchsinformation Milben");
 
         List<String> insektengifte = new ArrayList<>();
-        insektengifte.add("ALK-depot SQ® Insekten Fachinformation");
-        insektengifte.add("ALK-depot SQ® Insekten Gebrauchsinformation");
-        insektengifte.add("ALK-lyophilisiert SQ® Insekten Fachinformation");
-        insektengifte.add("ALK-lyophilisiert SQ® Insekten Gebrauchsinformation");
-        insektengifte.add("Reless® Insekten Fachinformation");
-        insektengifte.add("Reless® Insekten Gebrauchsinformation");
+        insektengifte.add("ALK-depot SQ® Fachinformation Insekten");
+        insektengifte.add("ALK-depot SQ® Gebrauchsinformation Insekten");
+        insektengifte.add("ALK-lyophilisiert SQ® Fachinformation Insekten");
+        insektengifte.add("ALK-lyophilisiert SQ® Gebrauchsinformation Insekten");
+        insektengifte.add("Reless® Fachinformation Insekten");
+        insektengifte.add("Reless® Gebrauchsinformation Insekten");
 
         List<String> jext = new ArrayList<>();
         jext.add("Fachinformation 150");
@@ -146,5 +170,13 @@ public class Fachinfos extends HomeScreen
         listHash.put(listDataHeader.get(7), insektengifte);
         listHash.put(listDataHeader.get(8), jext);
         listHash.put(listDataHeader.get(9), diagnostika);
+    }
+
+    private void pdfShow (String a, String b)
+    {
+        this.dateiName = a + " " + b + ".pdf";
+        Intent intent = new Intent(this, FachinfosPDF.class);
+        intent.putExtra("name", dateiName);
+        startActivity(intent);
     }
 }
