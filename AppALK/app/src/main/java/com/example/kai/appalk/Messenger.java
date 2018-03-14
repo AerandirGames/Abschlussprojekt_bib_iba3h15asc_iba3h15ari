@@ -13,9 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -24,6 +27,12 @@ import java.util.ArrayList;
 public class Messenger extends HomeScreen
 {
     private EditText frageInput;
+    private Spinner spinnerOben;
+    private Spinner spinnerUnten;
+    private RadioButton arztRB;
+    private RadioButton apothekerRB;
+    private boolean istArzt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,7 +61,55 @@ public class Messenger extends HomeScreen
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-/*
+        ArrayAdapter<CharSequence> apothekerAdapter = ArrayAdapter.createFromResource(this,
+            R.array.apothekerFragen, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> arztKAdapter = ArrayAdapter.createFromResource(this,
+                R.array.arztKategorien, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> ArztProduktAdapter = ArrayAdapter.createFromResource(this,
+                R.array.arztFragenProdukte, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> ArztSonstigesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.arztFragenSonstiges, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> kontaktweiseAdapter = ArrayAdapter.createFromResource(this,
+                R.array.kontaktierAuswahl, android.R.layout.simple_spinner_item);
+
+        apothekerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arztKAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArztProduktAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArztSonstigesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        kontaktweiseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerOben = findViewById(R.id.spinner2);
+        spinnerUnten = findViewById(R.id.spinner3);
+
+        arztRB = findViewById(R.id.radioButton3);
+        apothekerRB = findViewById(R.id.radioButton4);
+
+        istArzt = true;
+        arztRB.setEnabled(true);
+
+        arztRB.setChecked(true);
+
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+               // RadioButton rb=(RadioButton)findViewById(checkedId);
+                if(!istArzt)
+                {
+                    System.out.println("Arzt");
+                    istArzt = true;
+                }
+                else
+                    {
+                        System.out.println("Apotheker");
+                        istArzt = false;
+                    }
+
+
+            }
+        });
+        /*
         final Spinner sp_thema = findViewById(R.id.sp_thema);
         final Spinner sp_infoProdukt = findViewById(R.id.sp_infoProdukt);
         final Spinner sp_infoLieferung = findViewById(R.id.sp_infoLieferung);
