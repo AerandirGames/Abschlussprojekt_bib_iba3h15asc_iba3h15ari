@@ -8,10 +8,7 @@
             android:id="@+id/faq"
             android:icon="@drawable/ic_frage"
             android:title="@string/faq" />
-        <item
-            android:id="@+id/news"
-            android:icon="@drawable/ic_news"
-            android:title="@string/news" />
+
         <item
             android:id="@+id/kontakt"
             android:icon="@drawable/ic_rabatt"

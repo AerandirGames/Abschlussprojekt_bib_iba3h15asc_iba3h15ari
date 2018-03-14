@@ -71,7 +71,6 @@
 
     <!-- Nav Bar -->
     <string name="faq">Messenger</string>
-    <string name="news">Neuigkeiten</string>
     <string name="kontakt">Kontakt</string>
     <string name="nebenwirkungen">Nebenwirkungen melden</string>
     <string name="kongresse">Kongressinformationen</string>
@@ -79,32 +78,52 @@
     <string name="einstellungen">Einstellungen</string>
 
     <!-- Messenger -->
-    <string name="firstMessage">Hallo, ich bin Ally.\nMeine Aufgabe ist es, Sie durch den Messenger zu leiten.\nIch kann Ihnen leichte Fragen eigenständig beantworten. Wenn ich mal nicht weiter weiß kriegen Sie eine Auswahl an Kontaktmöglichkeiten an einen ALK-Mitarbeiter. Dieser wird sich dann innerhalb von 24 Stunden bei Ihnen melden.</string>
-    <string name="errorMessage">Sie haben eine Frage gestellt, die ich Ihnen leider nicht beantworten kann.\nBitte wählen Sie unten eine Kontaktmöglichkeit aus, dann wird sich ein Mitarbeiter bei Ihnen melden.\nSMS\nAnruf\nEmail\nBesuch Ihres Außendienstlers</string>
-    <string-array name="themenEntries">
-        <item>-- Bitte wählen Sie ein Thema --</item>
-        <item>Ich habe eine Frage zu Ihren Produkten</item>
-        <item>Ich habe eine Frage zu meiner Lieferung</item>
-        <item>Ich habe eine individuelle Frage</item>
+    <string name="firstMessage">Hallo, hier findest du heufig gestellte Fragen die dir eventuell weiterhelfen. Doch zur not findest du hier den Punkt -individuelle Frage stellen- wo du dur SMS, Anruf oder E-Mal Kontakt mit uns aufnehmen kannst.</string>
+    <string name="radioArzt">Arzt</string>
+    <string name="radioApotheker">Apotheker</string>
+    <string name="individuelleFrageText">Hier kannst du deine Frage eingeben.</string>
+    <string name="frageButton">Fragen</string>
+
+
+    <string-array name="apothekerFragen">
+        <item>-- Bitte wählen Sie eine Frage --</item>
+        <item>Wie kann ich als Apotheke bei ALK bestellen?</item>
+        <item>Fallen bei einer Bestellung Transportkosten an?</item>
+        <item>Was ist der Unterschied zwischen ALK-depot SQ® AF, F1 und F2?</item>
+        <item>Warum brauchen Sie den Inhabernamen der Apotheke?</item>
+        <item>Ist mein Fax angekommen?</item>
+        <item>Wann wird die bestellte Ware geliefert?</item>
+        <item>Individuelle Frage stellen</item>
     </string-array>
-    <string-array name="produktEntries">
-        <item>-- Bitte wählen Sie ein Thema --</item>
-        <item>SCIT</item>
-        <item>SLIT</item>
-        <item>Diagnostik</item>
+    <string-array name="arztKategorien">
+        <item>-- Bitte wählen Sie eine Kategorie --</item>
+        <item>Fragen zu Produkten</item>
+        <item>Sonstige Fragen</item>
+        <item>Individuelle Frage stellen</item>
     </string-array>
-    <string-array name="lieferungEntries">
-        <item>-- Bitte wählen Sie ein Thema --</item>
-        <item>Meine Lieferung kommt nicht an</item>
-        <item>Ich habe etwas falsches bestellt</item>
-        <item>Wann kommt meine Lieferung?</item>
+    <string-array name="arztFragenProdukte">
+        <item>-- Bitte wählen Sie eine Frage --</item>
+        <item>Warum sind Verdünnungen der ALK-lyophilisiert SQ®- und Reless®-Präparate nur 24 Stunden haltbar?</item>
+        <item>Wie wirksam und verträglich sind die verschiedenen ALK-Insektengiftpräparate?</item>
+        <item>Gibt es eine Verdünnungsanleitung für ALK-lyophilisiert SQ® Therapie Insektengiftpräparate?</item>
+        <item>Welche Erfahrungen gibt es mit GRAZAX® beim Einsatz von Kindern und Jugendlichen?</item>
+        <item>In welchen Studien wurde der nachhaltige Therapieerfolg von GRAZAX® belegt?</item>
     </string-array>
-    <string-array name="indFrageEntries">
-        <item>-- Wie können wir sie erreichen? --</item>
-        <item>SMS</item>
-        <item>Anruf</item>
+    <string-array name="arztFragenSonstiges">
+        <item>-- Bitte wählen Sie eine Frage --</item>
+        <item>Was ist der Unterschied einer Allergie-Immuntherapie mit Allergoiden vs. nativen Allergenen?</item>
+        <item>Für welche Präparate von ALK gilt die Indikation Asthmaprävention und gibt es einen Schutz vor Neusensibilisierungen?</item>
+        <item>Wie wird ein Pricktest durchgeführt und das Ergebnis bewertet?</item>
+        <item>Welche allergologische Relevanz hat Ragweed (Ambrosia)?</item>
+        <item>Wie vertragen sich Allergie-Immuntherapie und Betablocker?</item>
+    </string-array>
+    <string-array name="kontaktierAuswahl">
+        <item>-- Bitte wählen Sie eine Kontaktmöglichkeit aus --</item>
         <item>E-Mail</item>
+        <item>SMS</item>
+        <item>Per Anruf</item>
     </string-array>
+
 
     <!-- Nebenwirkungen -->
     <string name="nwText">Pharmaunternehmen haben laut Arzneimittelgesetz die Pflicht, bekannt gewordene Nebenwirkungen zu dokumentieren. Falls Sie eine Nebenwirkung zu melden haben, rufen Sie uns bitte unter der Tel.–Nr. 040-703845-300 an oder kontaktieren Sie uns per E-Mail. In dringenden Notfällen können Sie uns auch unter der Tel.-Nr. 040-703845-333 erreichen.</string>
