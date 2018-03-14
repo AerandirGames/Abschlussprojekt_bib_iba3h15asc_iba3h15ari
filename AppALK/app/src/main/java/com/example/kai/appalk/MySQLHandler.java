@@ -9,14 +9,11 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Kai on 09.03.2018.
  */
 
-/*public class MySQLHandler extends SQLiteOpenHelper
+public class MySQLHandler extends SQLiteOpenHelper
 {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME="android_api";
     private static final String TABLE_LOGIN="login";
-
-<<<<<<< HEAD
-}
 
     public MySQLHandler(Context context)
     {
@@ -41,4 +38,3 @@ import android.database.sqlite.SQLiteOpenHelper;
     }
 }
 
-*/

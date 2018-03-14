@@ -23,10 +23,7 @@ public class Registrieren_Tab3 extends Fragment
     private EditText et_praxisName, et_adresse, et_plz, et_stadt, et_praxisTel, et_praxisMail;
     private String praxisName, adresse, plz, stadt, praxisTel, praxisMail;
     private CheckBox checkBox;
-
-    //private MySQLHandler db;
-
-   // private MySQLHandler db;
+    private MySQLHandler db;
     private User user;
 
 
@@ -65,7 +62,7 @@ public class Registrieren_Tab3 extends Fragment
                     {
                         user = new User(tab2entries[0], tab2entries[1], tab2entries[2], tab2entries[3], tab2entries[4], tab2entries[5], tab2entries[6],
                                 praxisName, adresse, plz, stadt, praxisTel, praxisMail);
-                     //   writeInMySQL();
+                        writeInMySQL();
                     }
                     else
                     {
@@ -84,10 +81,6 @@ public class Registrieren_Tab3 extends Fragment
                /* }
                 else
                 {
-<<<<<<< HEAD
-                   // writeInMySQL();
-                }
-=======
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Sie müssen unsere Datenschutzbestimmungen und AGBs akzeptieren!")
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
@@ -116,17 +109,11 @@ public class Registrieren_Tab3 extends Fragment
         return view;
     }
 
-
-    /*public void writeInMySQL ()
-    {
-        db = new MySQLHandler(getApplicationContext());
-    }*/
-
-    /*public void writeInMySQL()
+    public void writeInMySQL()
     {
         db = new MySQLHandler(this.getContext());
     }
-*/
+
 
     public String[] getEntriesFromTab2()
     {
