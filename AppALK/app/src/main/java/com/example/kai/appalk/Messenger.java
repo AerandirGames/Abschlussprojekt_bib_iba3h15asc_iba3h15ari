@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,8 +32,16 @@ public class Messenger extends HomeScreen
     private Spinner spinnerUnten;
     private RadioButton arztRB;
     private RadioButton apothekerRB;
-    private boolean istArzt;
+    private Button fragen;
 
+
+    ArrayAdapter<CharSequence> apothekerAdapter;
+    ArrayAdapter<CharSequence> arztKAdapter;
+    ArrayAdapter<CharSequence> arztProduktAdapter;
+    ArrayAdapter<CharSequence> arztSonstigesAdapter;
+    ArrayAdapter<CharSequence> kontaktweiseAdapter;
+
+    String frage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -61,33 +70,75 @@ public class Messenger extends HomeScreen
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ArrayAdapter<CharSequence> apothekerAdapter = ArrayAdapter.createFromResource(this,
-            R.array.apothekerFragen, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> arztKAdapter = ArrayAdapter.createFromResource(this,
-                R.array.arztKategorien, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> ArztProduktAdapter = ArrayAdapter.createFromResource(this,
-                R.array.arztFragenProdukte, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> ArztSonstigesAdapter = ArrayAdapter.createFromResource(this,
-                R.array.arztFragenSonstiges, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> kontaktweiseAdapter = ArrayAdapter.createFromResource(this,
-                R.array.kontaktierAuswahl, android.R.layout.simple_spinner_item);
+        apothekerAdapter = ArrayAdapter.createFromResource(this,
+            R.array.apothekerFragen, R.layout.spinner_layout);
 
-        apothekerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        arztKAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ArztProduktAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ArztSonstigesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        kontaktweiseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arztKAdapter = ArrayAdapter.createFromResource(this,
+                R.array.arztKategorien, R.layout.spinner_layout);
+        arztProduktAdapter = ArrayAdapter.createFromResource(this,
+                R.array.arztFragenProdukte, R.layout.spinner_layout);
+        arztSonstigesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.arztFragenSonstiges, R.layout.spinner_layout);
+        kontaktweiseAdapter = ArrayAdapter.createFromResource(this,
+                R.array.kontaktierAuswahl, R.layout.spinner_layout);
+
+        apothekerAdapter.setDropDownViewResource(R.layout.spinner_layout);
+        arztKAdapter.setDropDownViewResource(R.layout.spinner_layout);
+        arztProduktAdapter.setDropDownViewResource(R.layout.spinner_layout);
+        arztSonstigesAdapter.setDropDownViewResource(R.layout.spinner_layout);
+        kontaktweiseAdapter.setDropDownViewResource(R.layout.spinner_layout);
 
         spinnerOben = findViewById(R.id.spinner2);
         spinnerUnten = findViewById(R.id.spinner3);
 
+        spinnerUnten.setVisibility(View.INVISIBLE);
+        spinnerOben.setVisibility(View.INVISIBLE);
+
         arztRB = findViewById(R.id.radioButton3);
         apothekerRB = findViewById(R.id.radioButton4);
 
-        istArzt = true;
-        arztRB.setEnabled(true);
+        frageInput = findViewById(R.id.editText11);
+        frageInput.setVisibility(View.INVISIBLE);
 
-        arztRB.setChecked(true);
+        fragen = findViewById(R.id.button2);
+
+        fragen.setEnabled(false);
+
+        fragen.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View view) {
+                                          if(frage.equals("E-Mail")||frage.equals("SMS")||frage.equals("Per Anruf"))
+                                          {
+                                              String empfaenger = "daniel.schitz@web.de";
+                                              String betreff = "Kunde möchte per " + frage + " kontaktiert werden";
+                                              String nutzerFrage = ""+frageInput.getText().toString();
+
+                                              Intent intent = new Intent(Intent.ACTION_SEND);
+                                              intent.putExtra(Intent.EXTRA_EMAIL,new String[]{empfaenger});
+                                              intent.putExtra(Intent.EXTRA_SUBJECT, betreff);
+                                              intent.putExtra(Intent.EXTRA_TEXT, nutzerFrage);
+
+                                              intent.setType("messege/rfc822");
+
+                                              startActivity(Intent.createChooser(intent,"Send Email"));
+                                              Toast.makeText(Messenger.this, "Hat geklappt", Toast.LENGTH_LONG).show();
+
+
+                                          }
+                                          else
+                                          {
+                                              Intent i = new Intent(Messenger.this,MessengerFrageAusgabe.class);
+                                              i.putExtra("frage", frage);
+                                              startActivity(i);
+                                          }
+                                      }
+                                  }
+        );
+
+
+
+
+        spinnerOben.setAdapter(arztKAdapter);
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -95,15 +146,277 @@ public class Messenger extends HomeScreen
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
                // RadioButton rb=(RadioButton)findViewById(checkedId);
-                if(!istArzt)
+                spinnerOben.setVisibility(View.VISIBLE);
+                spinnerUnten.setVisibility(View.INVISIBLE);
+                frageInput.setVisibility(View.INVISIBLE);
+                fragen.setEnabled(false);
+                if(checkedId != 2131689693)
                 {
-                    System.out.println("Arzt");
-                    istArzt = true;
+
+                    spinnerOben.setAdapter(arztKAdapter);
+
+                    spinnerOben.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                    {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                        {
+                            switch (position)
+                            {
+                                case 0:
+                                   spinnerUnten.setVisibility(View.INVISIBLE);
+                                    break;
+
+                                case 1:
+                                    spinnerUnten.setVisibility(View.VISIBLE);
+                                    spinnerUnten.setAdapter(arztProduktAdapter);
+
+                                    spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                                    {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                                        {
+                                            switch (position)
+                                            {
+                                                case 0:
+
+                                                    break;
+
+                                                case 1:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+
+                                                case 2:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+
+                                                case 3:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                                case 4:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                                case 5:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                            }
+                                        }
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> adapterView)
+                                        {
+
+                                        }
+
+                                    });
+
+                                    break;
+
+                                case 2:
+                                    spinnerUnten.setVisibility(View.VISIBLE);
+                                    spinnerUnten.setAdapter(arztSonstigesAdapter);
+
+                                    spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                                    {
+                                        @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                                {
+                                    switch (position)
+                                    {
+                                        case 0:
+
+                                            break;
+
+                                        case 1:
+                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                            fragen.setEnabled(true);
+                                            break;
+
+                                        case 2:
+                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                            fragen.setEnabled(true);
+                                            break;
+
+                                        case 3:
+                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                            fragen.setEnabled(true);
+                                            break;
+                                        case 4:
+                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                            fragen.setEnabled(true);
+                                            break;
+                                        case 5:
+                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                            fragen.setEnabled(true);
+                                            break;
+                                    }
+                                }
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView)
+                                {
+
+                                }
+
+                            });
+
+                                    break;
+
+                                case 3:
+                                    spinnerUnten.setVisibility(View.VISIBLE);
+                                    spinnerUnten.setAdapter(kontaktweiseAdapter);
+
+                                    spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                                    {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                                        {
+                                            switch (position)
+                                            {
+                                                case 0:
+
+                                                    break;
+
+                                                case 1:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+
+                                                    frageInput.setVisibility(View.VISIBLE);
+                                                    break;
+
+                                                case 2:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+
+                                                    frageInput.setVisibility(View.VISIBLE);
+                                                    break;
+
+                                                case 3:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+
+                                                    frageInput.setVisibility(View.VISIBLE);
+                                                    break;
+
+                                            }
+                                        }
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> adapterView)
+                                        {
+
+                                        }
+
+                                    });
+
+                                    break;
+                            }
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView)
+                        {
+
+                        }
+
+                    });
                 }
                 else
                     {
-                        System.out.println("Apotheker");
-                        istArzt = false;
+                        spinnerOben.setAdapter(apothekerAdapter);
+
+                        spinnerOben.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                        {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                            {
+                                switch (position)
+                                {
+                                    case 0:
+
+                                        break;
+
+                                    case 1:
+                                        frage = spinnerOben.getAdapter().getItem(position).toString();
+                                        fragen.setEnabled(true);
+                                        break;
+
+                                    case 2:
+                                        frage = spinnerOben.getAdapter().getItem(position).toString();
+                                        fragen.setEnabled(true);
+                                        break;
+
+                                    case 3:
+                                        frage = spinnerOben.getAdapter().getItem(position).toString();
+                                        fragen.setEnabled(true);
+                                        break;
+                                    case 4:
+                                        frage = spinnerOben.getAdapter().getItem(position).toString();
+                                        fragen.setEnabled(true);
+                                        break;
+                                    case 5:
+                                        frage = spinnerOben.getAdapter().getItem(position).toString();
+                                        fragen.setEnabled(true);
+                                        break;
+                                    case 6:
+                                        frage = spinnerOben.getAdapter().getItem(position).toString();
+                                        fragen.setEnabled(true);
+                                        break;
+                                    case 7:
+                                        spinnerUnten.setVisibility(View.VISIBLE);
+                                        spinnerUnten.setAdapter(kontaktweiseAdapter);
+
+                                        spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                                        {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                                            {
+                                                switch (position)
+                                                {
+                                                    case 0:
+
+                                                        break;
+
+                                                    case 1:
+                                                        frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                        fragen.setEnabled(true);
+
+                                                        frageInput.setVisibility(View.VISIBLE);
+                                                        break;
+
+                                                    case 2:
+                                                        frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                        fragen.setEnabled(true);
+
+                                                        frageInput.setVisibility(View.VISIBLE);
+                                                        break;
+
+                                                    case 3:
+                                                        frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                        fragen.setEnabled(true);
+
+                                                        frageInput.setVisibility(View.VISIBLE);
+                                                        break;
+
+                                                }
+                                            }
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> adapterView)
+                                            {
+
+                                            }
+
+                                        });
+                                        break;
+                                }
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView)
+                            {
+
+                            }
+
+                        });
                     }
 
 

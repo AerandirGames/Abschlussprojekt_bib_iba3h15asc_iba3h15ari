@@ -71,7 +71,10 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".FachinfosPDF"></activity>
+        <activity android:name=".FachinfosPDF" />
+        <activity android:name=".MessengerAusgabe.java" />
+        <activity android:name=".MessengerFrageAusgabe" />
+        <activity android:name=".GMailSender"></activity>
     </application>
 
 </manifest>
