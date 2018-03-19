@@ -8,12 +8,14 @@ import android.view.View;
 
 public class EinstellungenAccount extends AppCompatActivity
 {
+    private UserDatenbankManager userDBM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_einstellungen_account);
+        userDBM = new UserDatenbankManager(this);
     }
 
     public void abmelden(View view)
@@ -28,6 +30,7 @@ public class EinstellungenAccount extends AppCompatActivity
 
             dbm.updateAutoLogFalse();
         }
+        userDBM.deleteUser();
         startActivity(new Intent(this, Anmelden.class));
     }
 }

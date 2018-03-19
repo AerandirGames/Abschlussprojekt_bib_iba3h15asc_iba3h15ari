@@ -80,9 +80,7 @@
         </provider>
 
         <activity android:name=".FachinfosPDF" />
-        <activity android:name=".MessengerAusgabe.java" />
         <activity android:name=".MessengerFrageAusgabe" />
-        <activity android:name=".GMailSender"></activity>
     </application>
 
 </manifest>

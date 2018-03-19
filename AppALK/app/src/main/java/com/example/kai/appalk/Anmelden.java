@@ -24,14 +24,12 @@ import org.json.JSONObject;
 
 public class Anmelden extends AppCompatActivity
 {
-    private String val;
-    public static String userName, userVorname, userAnrede, userTitel, userTel, userEmail, userPraxisName, userPraxisAdresse,
-        userPraxisPlz, userPraxisStadt, userPraxisTel, userPraxisAdresszusatz, userPw;
+    private String val, sUsername, sPw;
     private boolean autologin_b;
     private Switch autologin;
     private RequestQueue requestQueue;
-    private String showUserUrl = "http://192.168.2.161/android_connect/showUser.php";
-    private EditText usernameEditText;
+    private String showUserUrl = "http://192.168.212.173/android_connect/showUser.php";
+    private EditText usernameEditText, pwEditText;
     private UserDatenbankManager userDBM;
 
     @Override
@@ -99,31 +97,17 @@ public class Anmelden extends AppCompatActivity
     //Führt zum HomeScreen der App, von dem aus alles gesteuert werden kann
     public void zumHomeScreen(View view)
     {
-        if (checkAnmeldung())
-        {
-            //hier switch wert in datenbank aktuallisieren
-            DatenbankManager db = new DatenbankManager(this);
-            if (autologin_b && Integer.parseInt(val) == 0)
-            {
-                db.updateAutoLogTrue();
-            }
-            else if (autologin_b && Integer.parseInt(val) == 1)
-            {
-                db.updateAutoLogFalse();
-            }
-            startActivity(new Intent(this, Messenger.class));
-        }
+        usernameEditText = findViewById(R.id.et_username);
+        pwEditText = findViewById(R.id.et_passwort);
+        sUsername = usernameEditText.getText().toString();
+        sPw = pwEditText.getText().toString();
+        getData();
     }
 
     //Checkt auf Richtigkeit der eingegebenden Daten
     public boolean checkAnmeldung()
     {
         boolean result = false;
-        usernameEditText = findViewById(R.id.et_username);
-        EditText pwEditText = findViewById(R.id.et_passwort);
-        getData();
-        String sUsername = usernameEditText.getText().toString();
-        String sPw = pwEditText.getText().toString();
         if (!sUsername.equals(userDBM.getEmail()) || !sPw.equals(userDBM.getPw()))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -159,17 +143,44 @@ public class Anmelden extends AppCompatActivity
                     for (int i = 0; i < users.length(); i++)
                     {
                         JSONObject user = users.getJSONObject(i);
-                        String name = user.getString("Name");
+                        String name = user.getString("Email");
                         if (name.equals(usernameEditText.getText().toString()))
                         {
-                            userDBM.insertUser(user.getString("Name"),user.getString("Vorname"),
-                                    user.getString("Anrede"), user.getString("Namenszusatz"),
-                                    user.getString("Handynr"), user.getString("Email"),
-                                    user.getString("Praxis"), user.getString("Adresse"),
-                                    user.getString("PLZ"), user.getString("Stadt"),
-                                    user.getString("Praxisnr"), user.getString("Adresszusatz"),
-                                    user.getString("Passwort"));
+                            if (userDBM.getEmail() == null || userDBM.getEmail().equals(""))
+                            {
+                                userDBM.insertUser(user.getString("Name"), user.getString("Vorname"),
+                                        user.getString("Anrede"), user.getString("Namenszusatz"),
+                                        user.getString("Handynr"), user.getString("Email"),
+                                        user.getString("Praxis"), user.getString("Adresse"),
+                                        user.getString("PLZ"), user.getString("Stadt"),
+                                        user.getString("Praxisnr"), user.getString("Adresszusatz"),
+                                        user.getString("Passwort"));
+                            }
+                            else
+                            {
+                                userDBM.updateUser(user.getString("Name"), user.getString("Vorname"),
+                                        user.getString("Anrede"), user.getString("Namenszusatz"),
+                                        user.getString("Handynr"), user.getString("Email"),
+                                        user.getString("Praxis"), user.getString("Adresse"),
+                                        user.getString("PLZ"), user.getString("Stadt"),
+                                        user.getString("Praxisnr"), user.getString("Adresszusatz"),
+                                        user.getString("Passwort"));
+                            }
                         }
+                    }
+                    if (checkAnmeldung())
+                    {
+                        //hier switch wert in datenbank aktuallisieren
+                        DatenbankManager db = new DatenbankManager(getApplicationContext());
+                        if (autologin_b && Integer.parseInt(val) == 0)
+                        {
+                            db.updateAutoLogTrue();
+                        }
+                        else if (autologin_b && Integer.parseInt(val) == 1)
+                        {
+                            db.updateAutoLogFalse();
+                        }
+                        startActivity(new Intent(getApplicationContext(), Messenger.class));
                     }
                 }
                 catch (JSONException e)
