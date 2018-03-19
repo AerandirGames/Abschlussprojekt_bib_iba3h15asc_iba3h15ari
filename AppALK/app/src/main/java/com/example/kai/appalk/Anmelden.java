@@ -124,19 +124,7 @@ public class Anmelden extends AppCompatActivity
         getData();
         String sUsername = usernameEditText.getText().toString();
         String sPw = pwEditText.getText().toString();
-        System.out.println("susername: " + sUsername + " spw: " + sPw);
-        System.out.println("mail: " + userDBM.getEmail() + " pw: " + userDBM.getPw());
-        if (sUsername.equals(userDBM.getEmail()))
-        {
-
-        }
-
-        if (sUsername.equals(userDBM.getEmail()))
-        {
-
-        }
-
-        if (!sUsername.equals(userDBM.getEmail()) && !sPw.equals(userDBM.getPw()))
+        if (!sUsername.equals(userDBM.getEmail()) || !sPw.equals(userDBM.getPw()))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.incorrectData)
