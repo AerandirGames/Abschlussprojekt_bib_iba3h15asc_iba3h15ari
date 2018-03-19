@@ -11,11 +11,28 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Anmelden extends AppCompatActivity
 {
-    String val;
-    boolean autologin_b;
-    Switch autologin;
+    private String val;
+    public static String userName, userVorname, userAnrede, userTitel, userTel, userEmail, userPraxisName, userPraxisAdresse,
+        userPraxisPlz, userPraxisStadt, userPraxisTel, userPraxisAdresszusatz, userPw;
+    private boolean autologin_b;
+    private Switch autologin;
+    private RequestQueue requestQueue;
+    private String showUserUrl = "http://192.168.2.161/android_connect/showUser.php";
+    private EditText usernameEditText;
+    private UserDatenbankManager userDBM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,11 +41,11 @@ public class Anmelden extends AppCompatActivity
         Cursor res;
 
         dbm = new DatenbankManager(this);
+        userDBM = new UserDatenbankManager(this);
         res = dbm.getSwitchValue();
-        System.out.println(String.valueOf(res.getCount()));
+        requestQueue = Volley.newRequestQueue(this.getApplicationContext());
         if (res.getCount() == 0)
         {
-            System.out.println("schritt1");
             dbm.insertV();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_anmelden_gui);
@@ -48,13 +65,11 @@ public class Anmelden extends AppCompatActivity
             }
             else
             {
-                System.out.println("db eintrag ist 0");
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_anmelden_gui);
-               // getSupportActionBar().setTitle(R.string.login);
+                // getSupportActionBar().setTitle(R.string.login);
 
                 autologin = (Switch) findViewById(R.id.sw_angemeldetBleiben);
-
                 autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
                 {
                     @Override
@@ -63,35 +78,14 @@ public class Anmelden extends AppCompatActivity
                         autologin_b = autologin.isChecked();
                         if (autologin_b)
                         {
-                            System.out.println("auf true");
                             autologin_b = true;
                         }
                         else
                         {
-                            System.out.println("auf false");
                             autologin_b = false;
                         }
                     }
                 });
-
-               /* autologin.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View view)
-                    {
-                        autologin_b = autologin.isChecked();
-                        if (autologin_b)
-                        {
-                            System.out.println("auf true");
-                            autologin_b = true;
-                        }
-                        else
-                        {
-                            System.out.println("auf false");
-                            autologin_b = false;
-                        }
-                    }
-                });*/
             }
         }
     }
@@ -117,8 +111,6 @@ public class Anmelden extends AppCompatActivity
             {
                 db.updateAutoLogFalse();
             }
-
-
             startActivity(new Intent(this, Messenger.class));
         }
     }
@@ -127,9 +119,24 @@ public class Anmelden extends AppCompatActivity
     public boolean checkAnmeldung()
     {
         boolean result = false;
-        EditText usernameEditText = findViewById(R.id.et_username);
+        usernameEditText = findViewById(R.id.et_username);
+        EditText pwEditText = findViewById(R.id.et_passwort);
+        getData();
         String sUsername = usernameEditText.getText().toString();
-        if (sUsername.matches(""))
+        String sPw = pwEditText.getText().toString();
+        System.out.println("susername: " + sUsername + " spw: " + sPw);
+        System.out.println("mail: " + userDBM.getEmail() + " pw: " + userDBM.getPw());
+        if (sUsername.equals(userDBM.getEmail()))
+        {
+
+        }
+
+        if (sUsername.equals(userDBM.getEmail()))
+        {
+
+        }
+
+        if (!sUsername.equals(userDBM.getEmail()) && !sPw.equals(userDBM.getPw()))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.incorrectData)
@@ -149,5 +156,47 @@ public class Anmelden extends AppCompatActivity
             result = true;
         }
         return result;
+    }
+
+    public void getData()
+    {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, showUserUrl, new Response.Listener<JSONObject>()
+        {
+            @Override
+            public void onResponse(JSONObject response)
+            {
+                try
+                {
+                    JSONArray users = response.getJSONArray("user");
+                    for (int i = 0; i < users.length(); i++)
+                    {
+                        JSONObject user = users.getJSONObject(i);
+                        String name = user.getString("Name");
+                        if (name.equals(usernameEditText.getText().toString()))
+                        {
+                            userDBM.insertUser(user.getString("Name"),user.getString("Vorname"),
+                                    user.getString("Anrede"), user.getString("Namenszusatz"),
+                                    user.getString("Handynr"), user.getString("Email"),
+                                    user.getString("Praxis"), user.getString("Adresse"),
+                                    user.getString("PLZ"), user.getString("Stadt"),
+                                    user.getString("Praxisnr"), user.getString("Adresszusatz"),
+                                    user.getString("Passwort"));
+                        }
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
     }
 }

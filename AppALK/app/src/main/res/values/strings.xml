@@ -55,7 +55,7 @@
     <string name="password">Passwort</string>
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
-    <string name="et_username_beschr">Benutzername oder E-Mail</string>
+    <string name="et_username_beschr">E-Mail</string>
     <string name="tv_passwortVergessen_beschr">Haben Sie Ihr Passwort vergessen?</string>
     <string name="sw_angemeldetBleiben_beschr">angemeldet bleiben</string>
 
