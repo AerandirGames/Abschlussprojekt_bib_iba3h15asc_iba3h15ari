@@ -18,7 +18,6 @@ import android.widget.Spinner;
 
 public class Registrieren_Tab2 extends Fragment
 {
-    private String vorname, name, email, telnr, pw, pwWiederholen, titel, anrede;
     private EditText et_vorname, et_name, et_email, et_telnr, et_pw, et_pwWiederholen;
     private Spinner sp_titel, sp_anrede;
 
@@ -42,15 +41,16 @@ public class Registrieren_Tab2 extends Fragment
             @Override
             public void onClick(View v)
             {
-                titel = sp_titel.getSelectedItem().toString();
-                anrede = sp_anrede.getSelectedItem().toString();
-                vorname = et_vorname.getText().toString();
-                name = et_name.getText().toString();
-                email = et_email.getText().toString();
-                telnr = et_telnr.getText().toString();
-                pw = et_pw.getText().toString();
-                pwWiederholen = et_pwWiederholen.getText().toString();
-                datenKorrekt(vorname, name, email, telnr, pw, pwWiederholen, anrede);
+                Registrieren_Tab3.titel = sp_titel.getSelectedItem().toString();
+                Registrieren_Tab3.anrede = sp_anrede.getSelectedItem().toString();
+                Registrieren_Tab3.vorname = et_vorname.getText().toString();
+                Registrieren_Tab3.name = et_name.getText().toString();
+                Registrieren_Tab3.email = et_email.getText().toString();
+                Registrieren_Tab3.telnr = et_telnr.getText().toString();
+                Registrieren_Tab3.pw = et_pw.getText().toString();
+                Registrieren_Tab3.pwWiederholen = et_pwWiederholen.getText().toString();
+                datenKorrekt(Registrieren_Tab3.vorname, Registrieren_Tab3.name, Registrieren_Tab3.email, Registrieren_Tab3.telnr,
+                        Registrieren_Tab3.pw, Registrieren_Tab3.pwWiederholen, Registrieren_Tab3.anrede);
             }
         });
 
@@ -70,7 +70,6 @@ public class Registrieren_Tab2 extends Fragment
     {
         if (anrede.equals("Herr") || anrede.equals("Frau"))
         {
-            System.out.println(anrede);
             if (!vorname.equals("") && !vorname.isEmpty() && !name.equals("") && !name.isEmpty())
             {
                 if (istMail(mail))
@@ -104,7 +103,6 @@ public class Registrieren_Tab2 extends Fragment
         }
         else
         {
-            System.out.println(anrede);
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("Bitte geben Sie Ihr Geschlecht an!")
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
@@ -126,7 +124,6 @@ public class Registrieren_Tab2 extends Fragment
         if (mail.matches("(\\w{1,}(\\w|\\.){1,})@(\\w{1,}(\\w|\\.){1,}\\.\\w{2,})"))
         {
             korrekt = true;
-            System.out.println("email ist ok");
         }
         else
         {
@@ -141,7 +138,6 @@ public class Registrieren_Tab2 extends Fragment
                     });
             AlertDialog alert = builder.create();
             alert.show();
-            System.out.println("email ist nicht ok");
         }
         return korrekt;
     }
@@ -152,7 +148,6 @@ public class Registrieren_Tab2 extends Fragment
         if (telnr.matches("^[0-9]*${6,25}"))
         {
             korrekt = true;
-            System.out.println("telnr ist ok");
         }
         else
         {
@@ -167,7 +162,6 @@ public class Registrieren_Tab2 extends Fragment
                     });
             AlertDialog alert = builder.create();
             alert.show();
-            System.out.println("telnr ist nicht ok");
         }
         return korrekt;
     }
@@ -179,7 +173,6 @@ public class Registrieren_Tab2 extends Fragment
         if (pw.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,25})"))
         {
             korrekt = true;
-            System.out.println("pw ist ok");
         }
         else
         {
@@ -194,7 +187,6 @@ public class Registrieren_Tab2 extends Fragment
                     });
             AlertDialog alert = builder.create();
             alert.show();
-            System.out.println("pw ist nicht ok");
         }
         return korrekt;
     }
@@ -205,7 +197,6 @@ public class Registrieren_Tab2 extends Fragment
         if (pw.equals(pwWiederholen))
         {
             korrekt = true;
-            System.out.println("passwörter sind gleich");
         }
         else
         {
@@ -220,14 +211,7 @@ public class Registrieren_Tab2 extends Fragment
                     });
             AlertDialog alert = builder.create();
             alert.show();
-            System.out.println("passwörter sind nicht gleich");
         }
         return korrekt;
-    }
-
-    public String[] getEntries()
-    {
-        return new String[]{anrede, titel, vorname, name, email, telnr, pw};
-
     }
 }
