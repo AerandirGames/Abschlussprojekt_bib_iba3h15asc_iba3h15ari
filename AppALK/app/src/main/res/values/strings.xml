@@ -23,7 +23,7 @@
     <string name="praxisname">Praxisname</string>
     <string name="praxismail">Praxismailadresse</string>
     <string name="praxisfon">Praxistel.</string>
-    <string name="praxisadress">Adresse + Nr.</string>
+    <string name="praxisadress">Straße + Hausnr.</string>
     <string name="city">Stadt</string>
     <string name="plz">PLZ</string>
 

@@ -8,44 +8,41 @@
 
     <Button
         android:id="@+id/but_account"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="152dp"
-        android:layout_height="91dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:onClick="zuEinstellungenAccount"
         android:text="@string/account"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <Button
         android:id="@+id/but_impressum"
-        android:layout_width="152dp"
-        android:layout_height="91dp"
-        android:text="@string/impressum"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="zuEinstellungenImpressum"
-        app:layout_constraintBottom_toTopOf="@+id/guideline31"
+        android:text="@string/impressum"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline30" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.30" />
+        app:layout_constraintGuide_percent="0.07" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.52" />
 
 </android.support.constraint.ConstraintLayout>
