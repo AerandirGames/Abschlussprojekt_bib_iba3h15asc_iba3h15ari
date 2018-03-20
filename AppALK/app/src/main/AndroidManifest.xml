@@ -46,7 +46,6 @@
         <activity android:name=".Fachinfos" />
         <activity android:name=".News" />
         <activity android:name=".Einstellungen" />
-        <activity android:name=".EinstellungenNetzwerk" />
         <activity android:name=".EinstellungenAccount" />
         <activity android:name=".EinstellungenImpressum" />
         <activity
@@ -81,9 +80,7 @@
         </provider>
 
         <activity android:name=".FachinfosPDF" />
-        <activity android:name=".MessengerAusgabe.java" />
         <activity android:name=".MessengerFrageAusgabe" />
-        <activity android:name=".GMailSender"></activity>
     </application>
 
 </manifest>

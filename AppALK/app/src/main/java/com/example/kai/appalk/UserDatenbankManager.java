@@ -77,6 +77,36 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         db.insert(DB_NAME, null, contentValues);
     }
 
+    public void deleteUser()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DB_NAME, null, null);
+    }
+
+    public void updateUser(String name, String vorname, String anrede, String titel,
+                           String tel, String mail, String pName, String pAdresse,
+                           String pPLZ, String pStadt, String pTel, String pAdrZs,
+                           String pw)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL0, 0);
+        contentValues.put(COL1, name);
+        contentValues.put(COL2, vorname);
+        contentValues.put(COL3, anrede);
+        contentValues.put(COL4, titel);
+        contentValues.put(COL5, tel);
+        contentValues.put(COL6, mail);
+        contentValues.put(COL7, pName);
+        contentValues.put(COL8, pAdresse);
+        contentValues.put(COL9, pPLZ);
+        contentValues.put(COL10, pStadt);
+        contentValues.put(COL11, pTel);
+        contentValues.put(COL12, pAdrZs);
+        contentValues.put(COL13, pw);
+        db.update(DB_NAME, contentValues, "id=0", null);
+    }
+
     public Cursor getUser()
     {
         SQLiteDatabase db = this.getWritableDatabase();
