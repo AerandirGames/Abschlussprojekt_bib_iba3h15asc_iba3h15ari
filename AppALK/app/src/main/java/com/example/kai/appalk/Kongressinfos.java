@@ -2,10 +2,13 @@ package com.example.kai.appalk;
 
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.renderscript.ScriptGroup;
@@ -31,6 +34,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     private ZXingScannerView mScannerView;
     ProgressDialog progressDialog;
     Result myResult;
+    DownloadManager dm;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -84,7 +88,15 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     }
 
     private void downloadFile(String a) {
-        try {
+
+
+        dm = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(a);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        Long reference;
+        reference = dm.enqueue(request);
+        /*try {
             URL fileurl = new URL(a);
             URLConnection uc = fileurl.openConnection();
             uc.connect();
@@ -116,6 +128,6 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
