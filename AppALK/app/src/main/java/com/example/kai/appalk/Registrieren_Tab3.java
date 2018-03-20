@@ -43,8 +43,8 @@ public class Registrieren_Tab3 extends Fragment
     private int nid;
     private CheckBox checkBox;
     private RequestQueue requestQueue;
-    private String insertUrl = "http://192.168.213.30/android_connect/insertUser.php";
-    private String getNidUrl = "http://192.168.213.30/android_connect/getNID.php";
+    private String insertUrl = "http://192.168.1.34/android_connect/insertUser.php";
+    private String getNidUrl = "http://192.168.1.34/android_connect/getNID.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)

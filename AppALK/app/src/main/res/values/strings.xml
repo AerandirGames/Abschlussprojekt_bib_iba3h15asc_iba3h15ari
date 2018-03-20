@@ -21,7 +21,7 @@
     <string name="back">Zurück</string>
     <string name="agb">Ich habe die Datenschutzbestimmungen gelesen und akzeptiere die AGBs.</string>
     <string name="praxisname">Praxisname</string>
-    <string name="praxismail">Praxismailadresse</string>
+    <string name="praxismail">Adresszusatz</string>
     <string name="praxisfon">Praxistel.</string>
     <string name="praxisadress">Straße + Hausnr.</string>
     <string name="city">Stadt</string>
