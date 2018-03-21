@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
+import android.widget.Toast;
 
 import com.google.zxing.Result;
 
@@ -64,34 +65,11 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     @Override
     public void handleResult(Result result)
     {
-        /*
-        myResult = result;
-        Log.v("handleResult",result.getText());
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan result");
-        builder.setMessage(result.getText());
 
-        progressDialog = new ProgressDialog(Kongressinfos.this);
-        progressDialog.setMessage("Datei wird heruntergeladen...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                downloadFile(myResult.getText());
-            }
-        }).start();
-
-        AlertDialog ad = builder.create();
-        ad.show();
-*/
-        //mScannerView
         myResult = result;
         dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(result.getText());
         DownloadManager.Request request = new DownloadManager.Request(uri);
-        request.setDescription("Datei wird heruntergeladen....");
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         String nameOfFile = URLUtil.guessFileName(result.getText(),null, MimeTypeMap.getFileExtensionFromUrl(result.getText()));
@@ -99,49 +77,25 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         dm.enqueue(request);
 
+        String erg = "";
+
+
+        File mPath = new File((Environment.DIRECTORY_DOWNLOADS + "/" + nameOfFile));
+        System.out.println(mPath);
+        System.out.println(mPath.getAbsoluteFile());
+        if (mPath.getAbsoluteFile().exists()) {
+            erg = "existiert";
+        }else
+        {
+            erg = "existiert nicht";
+        }
+        System.out.println(erg);
+        /*
+        Intent i = new Intent(this, Kongressinfos.class);
+        i.putExtra("ergebnis", erg);
+        startActivity(i);*/
+
     }
 
-    private void downloadFile(String a) {
 
-
-        dm = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
-        Uri uri = Uri.parse(a);
-        DownloadManager.Request request = new DownloadManager.Request(uri);
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        Long reference;
-        reference = dm.enqueue(request);
-        /*try {
-            URL fileurl = new URL(a);
-            URLConnection uc = fileurl.openConnection();
-            uc.connect();
-            InputStream ic = new BufferedInputStream(uc.getInputStream(),8192);
-
-            File downloadordner = new File(Environment.getExternalStorageDirectory(),"Download");
-
-            if(!downloadordner.exists())
-            {
-                downloadordner.mkdirs();
-
-            }
-
-            final File downloadedFile = new File(downloadordner, "kongressbeispiel" + System.currentTimeMillis() + "pdf");
-
-            OutputStream outputStream = new FileOutputStream(downloadedFile);
-            byte[] buffer = new byte[1024];
-
-            int read;
-            while((read = ic.read(buffer))!= -1)
-            {
-                outputStream.write(buffer,0,read);
-            }
-
-            outputStream.flush();
-            outputStream.close();
-            ic.close();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-    }
 }
