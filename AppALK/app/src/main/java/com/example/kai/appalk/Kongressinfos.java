@@ -14,6 +14,8 @@ import android.os.Environment;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.webkit.URLUtil;
 
 import com.google.zxing.Result;
 
@@ -62,6 +64,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     @Override
     public void handleResult(Result result)
     {
+        /*
         myResult = result;
         Log.v("handleResult",result.getText());
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -76,14 +79,25 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         new Thread(new Runnable(){
             @Override
             public void run() {
-                downloadFile(myResult.getText().toString());
+                downloadFile(myResult.getText());
             }
         }).start();
 
         AlertDialog ad = builder.create();
         ad.show();
-
+*/
         //mScannerView
+        myResult = result;
+        dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(result.getText());
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setDescription("Datei wird heruntergeladen....");
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        String nameOfFile = URLUtil.guessFileName(result.getText(),null, MimeTypeMap.getFileExtensionFromUrl(result.getText()));
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, nameOfFile);
+
+        dm.enqueue(request);
 
     }
 
