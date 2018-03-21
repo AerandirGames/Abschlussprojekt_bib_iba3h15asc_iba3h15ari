@@ -2,9 +2,26 @@ package com.example.kai.appalk;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Kai on 17.03.2018.
@@ -35,6 +52,10 @@ public class UserDatenbankManager extends SQLiteOpenHelper
                     COL7 + " TEXT, " + COL8 + " TEXT, " + COL9 + " TEXT, " +
                     COL10 + " TEXT, " + COL11 + " TEXT, " + COL12 + " TEXT, " +
                     COL13 + " TEXT);";
+    private String nidUrl = "http://192.168.213.153/android_connect/getNID2.php";
+    private String updateUrl = "http://192.168.213.153/android_connect/updateUser.php";
+    private int nid;
+    private RequestQueue requestQueue;
 
     public UserDatenbankManager(Context context)
     {
@@ -45,6 +66,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
         sqLiteDatabase.execSQL(SQL_CREATE);
+        requestQueue = Volley.newRequestQueue(new EinstellungenAccount().getApplicationContext());
     }
 
     @Override
@@ -107,6 +129,91 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         db.update(DB_NAME, contentValues, "id=0", null);
     }
 
+    public String getName()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL1 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userName"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getVorname()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL2 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userVorname"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getAnrede()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL3 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userAnrede"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getTitel()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL4 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userTitel"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getTel()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL5 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userTel"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
     public String getEmail()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -117,6 +224,108 @@ public class UserDatenbankManager extends SQLiteOpenHelper
             do
             {
                 result = res.getString(res.getColumnIndex("userEmail"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+    public String getPraxisName()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL7 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userPraxisName"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+
+    public String getPraxisAdresse()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL8 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userPraxisAdresse"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getPraxisPlz()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL9 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userPraxisPLZ"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getPraxisStadt()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL10 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userPraxisStadt"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getPraxisTel()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL11 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userPraxisTel"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
+    public String getPraxisAdresszs()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL12 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userPraxisAdresszusatz"));
             }
             while (res.moveToNext());
         }
@@ -146,8 +355,9 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL6, email);
-
         db.update(DB_NAME, values, null, null);
+        getNID();
+        updateMySQL();
     }
 
     public void updateTel(String tel)
@@ -157,6 +367,9 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         values.put(COL5, tel);
 
         db.update(DB_NAME, values, null, null);
+        getNID();
+        System.out.println("" + nid);
+        //updateMySQL();
     }
 
     public void updateName(String name)
@@ -164,8 +377,9 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL1, name);
-
-        db.update(DB_NAME, values, null, null);
+        db.update(DB_NAME, values, "id=0", null);
+        //getNID();
+        //updateMySQL();
     }
 
     public void updatePraxis(String pName, String pAdresse, String pPLZ, String pStadt,
@@ -181,6 +395,8 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         values.put(COL12, pAdrZs);
 
         db.update(DB_NAME, values, null, null);
+        getNID();
+        updateMySQL();
     }
 
     public void updateTitel(String titel)
@@ -190,6 +406,8 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         values.put(COL4, titel);
 
         db.update(DB_NAME, values, null, null);
+        getNID();
+        updateMySQL();
     }
 
     public void updatePasswort(String pw)
@@ -198,5 +416,85 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(COL13, pw);
         db.update(DB_NAME, values, null, null);
+        getNID();
+        updateMySQL();
+    }
+
+    public void updateMySQL()
+    {
+        StringRequest request = new StringRequest(Request.Method.POST, updateUrl, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+
+            }
+        }, new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("nid", "" + nid);
+                parameters.put("name", ""+getName());
+                parameters.put("vorname", ""+getVorname());
+                parameters.put("anrede", ""+getAnrede());
+                parameters.put("namenszusatz", ""+getTitel());
+                parameters.put("praxis", ""+getPraxisName());
+                parameters.put("adresse", ""+getPraxisAdresse());
+                parameters.put("plz", ""+getPraxisPlz());
+                parameters.put("stadt", ""+getPraxisStadt());
+                parameters.put("email", ""+getEmail());
+                parameters.put("praxisnr", ""+getPraxisTel());
+                parameters.put("handynr", ""+getTel());
+                parameters.put("passwort", ""+getPw());
+                parameters.put("adresszusatz", ""+getPraxisAdresszs());
+                return parameters;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    public void getNID()
+    {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, nidUrl, new Response.Listener<JSONObject>()
+        {
+            @Override
+            public void onResponse(JSONObject response)
+            {
+                try
+                {
+                    JSONArray userNid = response.getJSONArray("user");
+                    JSONObject objNid = userNid.getJSONObject(0);
+                    nid = Integer.parseInt(objNid.getString("nid"));
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("email", "" + getEmail());
+                parameters.put("passwort", "" + getPw());
+                return parameters;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
     }
 }

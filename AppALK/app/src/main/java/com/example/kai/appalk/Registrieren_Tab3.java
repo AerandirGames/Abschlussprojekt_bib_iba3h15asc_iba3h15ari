@@ -102,7 +102,6 @@ public class Registrieren_Tab3 extends Fragment
             {
                 if (checkBox.isChecked())
                 {
-
                     praxisMail = et_praxisMail.getText().toString();
                     if (praxisMail.matches("(\\w{1,}(\\w|\\.){1,})@(\\w{1,}(\\w|\\.){1,}\\.\\w{2,})") || praxisMail.isEmpty())
                     {
