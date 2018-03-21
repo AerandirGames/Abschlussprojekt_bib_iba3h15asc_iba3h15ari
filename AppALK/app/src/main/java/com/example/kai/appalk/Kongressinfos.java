@@ -100,13 +100,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch(i)
-                {
-                    case 0:
-                        pv.fromFile(new File(pfade.get(i)));
-                        ;
-                    break;
-                }
+                pv.fromFile(new File(pfade.get(i)));
             }
         });
 
