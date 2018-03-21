@@ -44,14 +44,14 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Fachinfos" />
-        <activity android:name=".News" />
         <activity android:name=".Einstellungen" />
         <activity android:name=".EinstellungenAccount" />
         <activity android:name=".EinstellungenImpressum" />
         <activity
             android:name=".Kongressinfos"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
