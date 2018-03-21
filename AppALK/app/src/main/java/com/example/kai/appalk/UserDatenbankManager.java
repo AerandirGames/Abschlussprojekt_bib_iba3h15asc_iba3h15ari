@@ -107,14 +107,6 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         db.update(DB_NAME, contentValues, "id=0", null);
     }
 
-    public Cursor getUser()
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + DB_NAME, null);
-        res.close();
-        return res;
-    }
-
     public String getEmail()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -205,7 +197,6 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL13, pw);
-
         db.update(DB_NAME, values, null, null);
     }
 }
