@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.zxing.Result;
 
 import java.io.BufferedInputStream;
@@ -53,6 +54,9 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     List<String> liste;
     ListView lv;
     ArrayList<String> pfade;
+    File[] dateien;
+    PDFView pdfView;
+    File directory;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -93,6 +97,14 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         kongresseAnzeigen();
 
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                File f = new File(directory+""+dateien[i].getName());
+                pdfView.fromFile(f);
+            }
+        });
+
 
     }
 
@@ -126,13 +138,14 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
             Log.v("List error:", "can't list" + path);
         }
         */
-        File directory = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
-        File[] dateien = directory.listFiles();
+        directory = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
+        dateien = directory.listFiles();
         System.out.println(dateien.length);
 
         for (int i=0; i<dateien.length; ++i)
         {
             Log.e("FILE:", directory +"/"+ dateien[i].getName());
+            if( dateien[i].getName().contains("kongress"))
             liste.add(dateien[i].getName());
         }
     }
