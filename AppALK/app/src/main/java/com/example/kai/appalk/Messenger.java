@@ -422,51 +422,6 @@ public class Messenger extends HomeScreen
 
             }
         });
-        /*
-        final Spinner sp_thema = findViewById(R.id.sp_thema);
-        final Spinner sp_infoProdukt = findViewById(R.id.sp_infoProdukt);
-        final Spinner sp_infoLieferung = findViewById(R.id.sp_infoLieferung);
-        final Spinner sp_infoIndFrage = findViewById(R.id.sp_infoIndFrage);
 
-        sp_thema.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
-            {
-                switch (position)
-                {
-                    case 0:
-                        sp_infoProdukt.setVisibility(View.INVISIBLE);
-                        sp_infoLieferung.setVisibility(View.INVISIBLE);
-                        sp_infoIndFrage.setVisibility(View.INVISIBLE);
-                        break;
-
-                    case 1:
-                        sp_infoProdukt.setVisibility(View.VISIBLE);
-                        sp_infoLieferung.setVisibility(View.INVISIBLE);
-                        sp_infoIndFrage.setVisibility(View.INVISIBLE);
-                        break;
-
-                    case 2:
-                        sp_infoProdukt.setVisibility(View.INVISIBLE);
-                        sp_infoLieferung.setVisibility(View.VISIBLE);
-                        sp_infoIndFrage.setVisibility(View.INVISIBLE);
-                        break;
-
-                    case 3:
-                        sp_infoProdukt.setVisibility(View.INVISIBLE);
-                        sp_infoLieferung.setVisibility(View.INVISIBLE);
-                        sp_infoIndFrage.setVisibility(View.VISIBLE);
-
-                        break;
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-
-        });*/
     }
 }

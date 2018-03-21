@@ -21,10 +21,12 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.zxing.Result;
 
 import java.io.BufferedInputStream;
@@ -51,6 +53,9 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     ArrayAdapter<String> adapter;
     List<String> liste;
     ListView lv;
+    ArrayList<String> pfade;
+    PDFView pv;
+    Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -80,13 +85,30 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         lv = findViewById(R.id.listView);
 
+        pv = findViewById(R.id.pdfView);
+
         liste = new ArrayList<String>();
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,liste);
 
         lv.setAdapter(adapter);
 
+        pfade = new ArrayList<String>();
+
         kongresseAnzeigen();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(i)
+                {
+                    case 0:
+                        pv.fromFile(new File(pfade.get(i)));
+                        ;
+                    break;
+                }
+            }
+        });
 
     }
 
@@ -104,6 +126,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         AssetManager mgr = getAssets();
 
+
         try {
 
             String list[] = mgr.list(path);
@@ -112,6 +135,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
                     if(list[i].contains("kongress")) {
                         Log.e("FILE:", path + "/" + list[i]);
                         liste.add(list[i]);
+                        pfade.add(path+"/" +list[i]);
                     }
                 }
 
