@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -35,6 +37,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -44,6 +48,9 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     ProgressDialog progressDialog;
     Result myResult;
     DownloadManager dm;
+    ArrayAdapter<String> adapter;
+    List<String> liste;
+    ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -71,7 +78,14 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        
+        lv = findViewById(R.id.listView);
+
+        liste = new ArrayList<String>();
+
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,liste);
+
+        lv.setAdapter(adapter);
+
         kongresseAnzeigen();
 
     }
@@ -93,13 +107,11 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         try {
 
             String list[] = mgr.list(path);
-            Log.e("FILES", String.valueOf(list.length));
-
-
                 for (int i=0; i<list.length; ++i)
                 {
                     if(list[i].contains("kongress")) {
                         Log.e("FILE:", path + "/" + list[i]);
+                        liste.add(list[i]);
                     }
                 }
 
