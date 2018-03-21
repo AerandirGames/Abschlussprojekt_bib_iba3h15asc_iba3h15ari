@@ -26,7 +26,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.github.barteksc.pdfviewer.PDFView;
 import com.google.zxing.Result;
 
 import java.io.BufferedInputStream;
@@ -54,8 +53,6 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     List<String> liste;
     ListView lv;
     ArrayList<String> pfade;
-    PDFView pv;
-    Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -85,24 +82,17 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         lv = findViewById(R.id.listView);
 
-        pv = findViewById(R.id.pdfView);
-
         liste = new ArrayList<String>();
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,liste);
 
         lv.setAdapter(adapter);
 
-        pfade = new ArrayList<String>();
+        //pfade = new ArrayList<String>();
 
         kongresseAnzeigen();
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                pv.fromFile(new File(pfade.get(i)));
-            }
-        });
+
 
     }
 
@@ -116,33 +106,29 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
     public void kongresseAnzeigen()
     {
+        /*
         String path = Environment.getExternalStorageDirectory().toString()+"/Download";
 
         AssetManager mgr = getAssets();
 
-
         try {
 
             String list[] = mgr.list(path);
+            Log.e("FILES", String.valueOf(list.length));
+
+
                 for (int i=0; i<list.length; ++i)
                 {
-                    if(list[i].contains("kongress")) {
-                        Log.e("FILE:", path + "/" + list[i]);
-                        liste.add(list[i]);
-                        pfade.add(path+"/" +list[i]);
-                    }
+                    Log.e("FILE:", path +"/"+ list[i]);
                 }
 
         } catch (IOException e) {
             Log.v("List error:", "can't list" + path);
         }
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        mScannerView.stopCamera();
+        */
+        File directory = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
+        File[] dateien = directory.listFiles();
+        System.out.println(dateien.length);
     }
 
 
