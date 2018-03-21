@@ -39,7 +39,7 @@ public class Fachinfos extends HomeScreen
 
         try
         {
-            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle("Fachinformationen");
         }
         catch(NullPointerException n)
         {

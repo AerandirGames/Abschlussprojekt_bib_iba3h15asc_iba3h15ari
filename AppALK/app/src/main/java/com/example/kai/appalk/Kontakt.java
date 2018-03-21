@@ -32,7 +32,7 @@ public class Kontakt extends HomeScreen
 
         try
         {
-            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle("Kontakt");
         }
         catch(NullPointerException n)
         {

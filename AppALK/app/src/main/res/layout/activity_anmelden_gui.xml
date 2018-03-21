@@ -24,7 +24,7 @@
         android:layout_width="237dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:hint="@string/et_username_beschr"
         app:layout_constraintBottom_toTopOf="@+id/et_passwort"
         app:layout_constraintEnd_toEndOf="parent"

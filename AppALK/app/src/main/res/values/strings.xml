@@ -78,7 +78,7 @@
     <string name="einstellungen">Einstellungen</string>
 
     <!-- Messenger -->
-    <string name="firstMessage">Hallo, hier findest du heufig gestellte Fragen die dir eventuell weiterhelfen. Doch zur not findest du hier den Punkt -individuelle Frage stellen- wo du dur SMS, Anruf oder E-Mal Kontakt mit uns aufnehmen kannst.</string>
+    <string name="firstMessage">Hallo, hier finden Sie häufig gestellte Fragen die Ihnen eventuell weiterhelfen. Falls nicht finden Sie hier ebenfalls den Punkt -individuelle Frage stellen- wo Sie per SMS, Anruf oder E-Mal eine Antwort innerhalb der nächsten 24h von uns erwarten können.</string>
     <string name="radioArzt">Arzt</string>
     <string name="radioApotheker">Apotheker</string>
     <string name="individuelleFrageText">Hier kannst du deine Frage eingeben.</string>

@@ -1,5 +1,6 @@
 package com.example.kai.appalk;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +10,8 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,6 +39,7 @@ public class NebenwirkungenFormular extends AppCompatActivity
     private RadioButton geschlechtM;
     private Uri imgUri;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -76,6 +80,17 @@ public class NebenwirkungenFormular extends AppCompatActivity
                 new DatePickerDialog(NebenwirkungenFormular.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        gebDat.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = gebDat.getInputType(); // backup the input type
+                gebDat.setInputType(InputType.TYPE_NULL); // disable soft input
+                gebDat.onTouchEvent(event); // call native handler
+                gebDat.setInputType(inType); // restore input type
+                return true; // consume touch even
             }
         });
 

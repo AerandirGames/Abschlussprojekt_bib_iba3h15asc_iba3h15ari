@@ -28,7 +28,7 @@ public class Anmelden extends AppCompatActivity
     private boolean autologin_b;
     private Switch autologin;
     private RequestQueue requestQueue;
-    private String showUserUrl = "http://192.168.213.153/android_connect/showUser.php";
+    private String showUserUrl = "http://192.168.1.34/android_connect/showUser.php";
     private EditText usernameEditText, pwEditText;
     private UserDatenbankManager userDBM;
 
@@ -144,6 +144,7 @@ public class Anmelden extends AppCompatActivity
                     {
                         JSONObject user = users.getJSONObject(i);
                         String name = user.getString("Email");
+
                         if (name.equals(usernameEditText.getText().toString()))
                         {
                             if (userDBM.getEmail() == null || userDBM.getEmail().equals(""))
@@ -154,7 +155,7 @@ public class Anmelden extends AppCompatActivity
                                         user.getString("Praxis"), user.getString("Adresse"),
                                         user.getString("PLZ"), user.getString("Stadt"),
                                         user.getString("Praxisnr"), user.getString("Adresszusatz"),
-                                        user.getString("Passwort"));
+                                        user.getString("Passwort"), user.getString("NID"));
                             }
                             else
                             {
@@ -164,7 +165,7 @@ public class Anmelden extends AppCompatActivity
                                         user.getString("Praxis"), user.getString("Adresse"),
                                         user.getString("PLZ"), user.getString("Stadt"),
                                         user.getString("Praxisnr"), user.getString("Adresszusatz"),
-                                        user.getString("Passwort"));
+                                        user.getString("Passwort"), user.getString("NID"));
                             }
                         }
                     }

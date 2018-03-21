@@ -20,7 +20,7 @@ public class EinstellungenAccount extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_einstellungen_account);
         userDBM = new UserDatenbankManager(this);
-        System.out.println(userDBM.getName());
+        System.out.println(userDBM.getNid());
     }
 
     public void setSendAnrede (View view)

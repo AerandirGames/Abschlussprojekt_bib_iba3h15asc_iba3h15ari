@@ -26,7 +26,7 @@ public class Nebenwirkungen extends HomeScreen
 
         try
         {
-            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle("Nebenwirkungen");
         }
         catch(NullPointerException n)
         {

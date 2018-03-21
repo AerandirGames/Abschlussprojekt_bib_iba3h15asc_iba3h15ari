@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -45,28 +46,27 @@ public class UserDatenbankManager extends SQLiteOpenHelper
     private static final String COL11 = "userPraxisTel";
     private static final String COL12 = "userPraxisAdresszusatz";
     private static final String COL13 = "userPw";
+    private static final String COL14 = "userNID";
     private static final String SQL_CREATE =
             "CREATE TABLE " + DB_NAME + "(" + COL0 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL1 + " TEXT, " + COL2 + " TEXT, " + COL3 + " TEXT, " +
                     COL4 + " TEXT, " + COL5 + " TEXT, " + COL6 + " TEXT, " +
                     COL7 + " TEXT, " + COL8 + " TEXT, " + COL9 + " TEXT, " +
                     COL10 + " TEXT, " + COL11 + " TEXT, " + COL12 + " TEXT, " +
-                    COL13 + " TEXT);";
-    private String nidUrl = "http://192.168.213.153/android_connect/getNID2.php";
+                    COL13 + " TEXT, " + COL14 + " TEXT);";
     private String updateUrl = "http://192.168.213.153/android_connect/updateUser.php";
-    private int nid;
     private RequestQueue requestQueue;
 
     public UserDatenbankManager(Context context)
     {
         super(context, DB_NAME, null, DB_VERSION);
+        requestQueue = Volley.newRequestQueue(context);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
         sqLiteDatabase.execSQL(SQL_CREATE);
-        requestQueue = Volley.newRequestQueue(new EinstellungenAccount().getApplicationContext());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
     public void insertUser(String name, String vorname, String anrede, String titel,
                            String tel, String mail, String pName, String pAdresse,
                            String pPLZ, String pStadt, String pTel, String pAdrZs,
-                           String pw)
+                           String pw, String nid)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -96,6 +96,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         contentValues.put(COL11, pTel);
         contentValues.put(COL12, pAdrZs);
         contentValues.put(COL13, pw);
+        contentValues.put(COL14, nid);
         db.insert(DB_NAME, null, contentValues);
     }
 
@@ -108,7 +109,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
     public void updateUser(String name, String vorname, String anrede, String titel,
                            String tel, String mail, String pName, String pAdresse,
                            String pPLZ, String pStadt, String pTel, String pAdrZs,
-                           String pw)
+                           String pw, String nid)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -126,6 +127,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         contentValues.put(COL11, pTel);
         contentValues.put(COL12, pAdrZs);
         contentValues.put(COL13, pw);
+        contentValues.put(COL14, nid);
         db.update(DB_NAME, contentValues, "id=0", null);
     }
 
@@ -274,7 +276,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         {
             do
             {
-                result = res.getString(res.getColumnIndex("userPraxisPLZ"));
+                result = res.getString(res.getColumnIndex("userPraxisPlz"));
             }
             while (res.moveToNext());
         }
@@ -350,13 +352,29 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         return result;
     }
 
+    public String getNid()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select " + COL14 + " from " + DB_NAME, null);
+        String result = "";
+        if (res.moveToFirst())
+        {
+            do
+            {
+                result = res.getString(res.getColumnIndex("userNID"));
+            }
+            while (res.moveToNext());
+        }
+        res.close();
+        return result;
+    }
+
     public void updateEmail(String email)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL6, email);
         db.update(DB_NAME, values, null, null);
-        getNID();
         updateMySQL();
     }
 
@@ -367,9 +385,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         values.put(COL5, tel);
 
         db.update(DB_NAME, values, null, null);
-        getNID();
-        System.out.println("" + nid);
-        //updateMySQL();
+        updateMySQL();
     }
 
     public void updateName(String name)
@@ -378,7 +394,6 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(COL1, name);
         db.update(DB_NAME, values, "id=0", null);
-        getNID();
         updateMySQL();
     }
 
@@ -395,7 +410,6 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         values.put(COL12, pAdrZs);
 
         db.update(DB_NAME, values, null, null);
-        getNID();
         updateMySQL();
     }
 
@@ -406,7 +420,6 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         values.put(COL4, titel);
 
         db.update(DB_NAME, values, null, null);
-        getNID();
         updateMySQL();
     }
 
@@ -416,7 +429,6 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(COL13, pw);
         db.update(DB_NAME, values, null, null);
-        getNID();
         updateMySQL();
     }
 
@@ -440,7 +452,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
             protected Map<String, String> getParams() throws AuthFailureError
             {
                 Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("nid", "" + nid);
+                parameters.put("nid", "" + getNid());
                 parameters.put("name", ""+getName());
                 parameters.put("vorname", ""+getVorname());
                 parameters.put("anrede", ""+getAnrede());
@@ -458,43 +470,5 @@ public class UserDatenbankManager extends SQLiteOpenHelper
             }
         };
         requestQueue.add(request);
-    }
-
-    public void getNID()
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, nidUrl, new Response.Listener<JSONObject>()
-        {
-            @Override
-            public void onResponse(JSONObject response)
-            {
-                try
-                {
-                    JSONArray userNid = response.getJSONArray("user");
-                    JSONObject objNid = userNid.getJSONObject(0);
-                    nid = Integer.parseInt(objNid.getString("nid"));
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener()
-        {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-                Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("email", "" + getEmail());
-                parameters.put("passwort", "" + getPw());
-                return parameters;
-            }
-        };
-        requestQueue.add(jsonObjectRequest);
     }
 }
