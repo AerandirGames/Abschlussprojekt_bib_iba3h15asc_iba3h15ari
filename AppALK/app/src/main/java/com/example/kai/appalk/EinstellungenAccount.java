@@ -20,6 +20,7 @@ public class EinstellungenAccount extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_einstellungen_account);
         userDBM = new UserDatenbankManager(this);
+        System.out.println(userDBM.getName());
     }
 
     public void setSendAnrede (View view)
@@ -217,7 +218,41 @@ public class EinstellungenAccount extends AppCompatActivity
                 !praxisAdresse.equals("") && !praxisPLZ.equals("") &&
                 !praxisPLZ.isEmpty() && !praxisStadt.isEmpty() && !praxisStadt.equals(""))
         {
+            if (praxisTel.matches("^[0-9]*${6,25}"))
+            {
+                if (praxisPLZ.length() == 5)
+                {
+                    userDBM.updatePraxis(praxisName, praxisAdresse, praxisPLZ, praxisStadt, praxisTel, praxisAdresszs);
+                }
+                else
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                    builder.setMessage("Bitte geben Sie eine gültige Postleitzahl ein!")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
 
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+            }
+            else
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setMessage("Bitte geben Sie eine gültige Telefonnummer ein!")
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
         }
         else
         {
