@@ -46,7 +46,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
     }
 
-    public void onClick(View view)
+    public void QRCodeScannen(View view)
     {
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
@@ -66,6 +66,11 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     public void handleResult(Result result)
     {
 
+        File file=new File(Environment.DIRECTORY_DOWNLOADS);
+        File[] list = file.listFiles();
+        int fileNumber = list.length;
+        System.out.println(fileNumber);
+
         myResult = result;
         dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(result.getText());
@@ -79,11 +84,16 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         String erg = "";
 
+/*
+
+        file=new File(Environment.DIRECTORY_DOWNLOADS);
+        list = file.listFiles();
 
         File mPath = new File((Environment.DIRECTORY_DOWNLOADS + "/" + nameOfFile));
         System.out.println(mPath);
         System.out.println(mPath.getAbsoluteFile());
-        if (mPath.getAbsoluteFile().exists()) {
+        */
+        if (fileNumber<list.length) {
             erg = "existiert";
         }else
         {
