@@ -106,6 +106,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
     public void kongresseAnzeigen()
     {
+        /*
         String path = Environment.getExternalStorageDirectory().toString()+"/Download";
 
         AssetManager mgr = getAssets();
@@ -124,13 +125,10 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         } catch (IOException e) {
             Log.v("List error:", "can't list" + path);
         }
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        mScannerView.stopCamera();
+        */
+        File directory = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
+        File[] dateien = directory.listFiles();
+        System.out.println(dateien.length);
     }
 
 
