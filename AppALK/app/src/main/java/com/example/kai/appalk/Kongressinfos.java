@@ -101,7 +101,9 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 File f = new File(directory+""+dateien[i].getName());
-                pdfView.fromFile(f);
+                Intent ii = new Intent(Kongressinfos.this,FachinfosPDF.class);
+                ii.putExtra("datei",f);
+                startActivity(ii);
             }
         });
 

@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
+import java.io.File;
+
 public class FachinfosPDF extends Fachinfos
 {
     @Override
@@ -20,8 +22,15 @@ public class FachinfosPDF extends Fachinfos
 
         if(b!=null)
         {
-            String dateiName =(String) b.get("name");
-            pdfView.fromAsset(dateiName).load();
+            if(b.get("name") != null) {
+                String dateiName = (String) b.get("name");
+                pdfView.fromAsset(dateiName).load();
+            }
+            else
+            {
+                //String s = (String) b.get("datei");
+                pdfView.fromFile((File)b.get("datei"));
+            }
         }
 
 
