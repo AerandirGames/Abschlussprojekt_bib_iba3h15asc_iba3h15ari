@@ -6,12 +6,17 @@ import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.renderscript.ScriptGroup;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -23,6 +28,7 @@ import com.google.zxing.Result;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
@@ -42,7 +48,30 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_kongresse);
+        setContentView(R.layout.activity_kongresse);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        try
+        {
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
+        catch(NullPointerException n)
+        {
+            System.out.println("Nullpointer Exception");
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        kongresseAnzeigen();
 
     }
 
@@ -52,6 +81,28 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
+    }
+
+    public void kongresseAnzeigen()
+    {
+        String path = Environment.getExternalStorageDirectory().toString()+"/Download";
+
+        AssetManager mgr = getAssets();
+
+        try {
+
+            String list[] = mgr.list(path);
+            Log.e("FILES", String.valueOf(list.length));
+
+
+                for (int i=0; i<list.length; ++i)
+                {
+                    Log.e("FILE:", path +"/"+ list[i]);
+                }
+
+        } catch (IOException e) {
+            Log.v("List error:", "can't list" + path);
+        }
     }
 
     @Override
@@ -82,12 +133,13 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
         dm.enqueue(request);
 
+
         String erg = "";
-
-/*
-
         file=new File(Environment.DIRECTORY_DOWNLOADS);
         list = file.listFiles();
+/*
+
+
 
         File mPath = new File((Environment.DIRECTORY_DOWNLOADS + "/" + nameOfFile));
         System.out.println(mPath);
@@ -100,10 +152,9 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
             erg = "existiert nicht";
         }
         System.out.println(erg);
-        /*
+
         Intent i = new Intent(this, Kongressinfos.class);
-        i.putExtra("ergebnis", erg);
-        startActivity(i);*/
+        startActivity(i);
 
     }
 

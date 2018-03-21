@@ -25,7 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Anmelden">
+        <activity android:name=".Anmelden"
+
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,19 +40,24 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Nebenwirkungen"
-            android:label="Nebenwirkungen" />
+            android:label="Nebenwirkungen"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Registrieren"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Fachinfos" />
-        <activity android:name=".Einstellungen" />
-        <activity android:name=".EinstellungenAccount" />
-        <activity android:name=".EinstellungenImpressum" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Fachinfos"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Einstellungen"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EinstellungenAccount"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EinstellungenImpressum"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Kongressinfos"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,14 +67,17 @@
         <activity
             android:name=".Kontakt"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Messenger"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NebenwirkungenFormular"
-            android:label="NebenwirkungenFormular" />
+            android:label="NebenwirkungenFormular"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name=".GenericFileProvider"
