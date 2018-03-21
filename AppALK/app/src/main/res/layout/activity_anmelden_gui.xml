@@ -83,11 +83,11 @@
 
     <TextView
         android:id="@+id/tv_appname"
-        android:layout_width="261dp"
+        android:layout_width="125dp"
         android:layout_height="80dp"
         android:layout_marginBottom="63dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginStart="62dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="42dp"
         android:text="@string/app_name"
         android:textColor="#002458"
@@ -95,7 +95,6 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/et_passwort"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

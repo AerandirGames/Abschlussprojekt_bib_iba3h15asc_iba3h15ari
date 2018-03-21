@@ -378,8 +378,8 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(COL1, name);
         db.update(DB_NAME, values, "id=0", null);
-        //getNID();
-        //updateMySQL();
+        getNID();
+        updateMySQL();
     }
 
     public void updatePraxis(String pName, String pAdresse, String pPLZ, String pStadt,
