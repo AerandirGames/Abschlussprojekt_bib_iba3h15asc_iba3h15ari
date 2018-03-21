@@ -71,6 +71,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        
         kongresseAnzeigen();
 
     }
@@ -97,7 +98,9 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
                 for (int i=0; i<list.length; ++i)
                 {
-                    Log.e("FILE:", path +"/"+ list[i]);
+                    if(list[i].contains("kongress")) {
+                        Log.e("FILE:", path + "/" + list[i]);
+                    }
                 }
 
         } catch (IOException e) {
