@@ -129,6 +129,12 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         File directory = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
         File[] dateien = directory.listFiles();
         System.out.println(dateien.length);
+
+        for (int i=0; i<dateien.length; ++i)
+        {
+            Log.e("FILE:", directory +"/"+ dateien[i].getName());
+            liste.add(dateien[i].getName());
+        }
     }
 
 
