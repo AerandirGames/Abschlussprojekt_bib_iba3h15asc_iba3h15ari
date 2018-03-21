@@ -28,8 +28,9 @@ public class FachinfosPDF extends Fachinfos
             }
             else
             {
+                System.out.println(b.get("datei"));
                 //String s = (String) b.get("datei");
-                pdfView.fromFile((File)b.get("datei"));
+                pdfView.fromFile((File)b.get("datei")).load();
             }
         }
 
