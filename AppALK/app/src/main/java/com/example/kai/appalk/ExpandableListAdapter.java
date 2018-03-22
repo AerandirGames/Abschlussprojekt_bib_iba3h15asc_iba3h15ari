@@ -73,10 +73,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup)
     {
-        String headerTitle = (String)getGroup(i);
+        String headerTitle = (String) getGroup(i);
         if (view == null)
         {
-            LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_group, null);
         }
         TextView fi_expListHeader = (TextView) view.findViewById(R.id.fi_expLvListHeader);
@@ -91,7 +91,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
         final String childText = (String) getChild(i, i1);
         if (view == null)
         {
-            LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item, null);
         }
 

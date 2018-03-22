@@ -30,14 +30,13 @@ public class NebenwirkungenFormular extends AppCompatActivity
 {
     public static final int CAMERA_REQUEST = 10;
 
-    private String userName = "Brandt", userVorname = "Felix", userNr = "01624426323", userMail = "brandt@gmail.com";
-
     private Calendar myCalendar;
     private Button button;
     private ImageView iv;
     private TextView gebDat, groesse, gewicht, name, cNr, beschr;
     private RadioButton geschlechtM;
     private Uri imgUri;
+    private UserDatenbankManager userDBM;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -45,7 +44,7 @@ public class NebenwirkungenFormular extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nebenwirkungen_formular);
-
+        userDBM = new UserDatenbankManager(this);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
@@ -83,9 +82,11 @@ public class NebenwirkungenFormular extends AppCompatActivity
             }
         });
 
-        gebDat.setOnTouchListener(new View.OnTouchListener(){
+        gebDat.setOnTouchListener(new View.OnTouchListener()
+        {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public boolean onTouch(View v, MotionEvent event)
+            {
                 int inType = gebDat.getInputType(); // backup the input type
                 gebDat.setInputType(InputType.TYPE_NULL); // disable soft input
                 gebDat.onTouchEvent(event); // call native handler
@@ -168,7 +169,7 @@ public class NebenwirkungenFormular extends AppCompatActivity
                     "Geburtsdatum: " + gebDat.getText().toString() + ", Geschlecht: " + getGeschlecht() + ", Größe: "
                     + groesse.getText().toString() + "cm, Gewicht: " + gewicht.getText().toString() + "kg\nInformationen Präparat: \n" +
                     "Name des Präparats: " + name.getText().toString() + ", Chargen-Nr: " + cNr.getText().toString() + "\n" +
-                    "Informationen des Meldenden; \n Name: " + userVorname + " " + userName + ", Tel.: " + userNr + ", Mail: " + userMail + "\n" +
+                    "Informationen des Meldenden; \n Name: " + userDBM.getVorname() + " " + userDBM.getName() + ", Tel.: " + userDBM.getTel() + ", Mail: " + userDBM.getEmail() + "\n" +
                     "Informationen der Reaktion:\nBeschreibung der Reaktion: " + beschr.getText().toString());
             emailIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));

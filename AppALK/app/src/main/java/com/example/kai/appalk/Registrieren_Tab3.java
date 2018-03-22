@@ -110,7 +110,7 @@ public class Registrieren_Tab3 extends Fragment
                             @Override
                             public void onResponse(String response)
                             {
-                                Intent i = new Intent(getActivity(),Anmelden.class);
+                                Intent i = new Intent(getActivity(), Anmelden.class);
                                 startActivity(new Intent(i));
                             }
                         }, new Response.ErrorListener()
@@ -119,7 +119,8 @@ public class Registrieren_Tab3 extends Fragment
                             public void onErrorResponse(VolleyError error)
                             {
                             }
-                        }){
+                        })
+                        {
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError
                             {
@@ -130,25 +131,25 @@ public class Registrieren_Tab3 extends Fragment
                                 praxisTel = et_praxisTel.getText().toString();
                                 praxisMail = et_praxisMail.getText().toString();
 
-                                if(titel == null)
+                                if (titel == null)
                                 {
                                     titel = "";
                                 }
                                 Map<String, String> parameters = new HashMap<String, String>();
                                 parameters.put("nid", "" + (nid + 1));
-                                parameters.put("name", ""+name);
-                                parameters.put("vorname", ""+vorname);
-                                parameters.put("anrede", ""+anrede);
-                                parameters.put("namenszusatz", ""+titel);
-                                parameters.put("praxis", ""+praxisName);
-                                parameters.put("adresse", ""+adresse);
-                                parameters.put("plz", ""+plz);
-                                parameters.put("stadt", ""+stadt);
-                                parameters.put("email", ""+email);
-                                parameters.put("praxisnr", ""+praxisTel);
-                                parameters.put("handynr", ""+telnr);
-                                parameters.put("passwort", ""+pw);
-                                parameters.put("adresszusatz", ""+praxisMail);
+                                parameters.put("name", "" + name);
+                                parameters.put("vorname", "" + vorname);
+                                parameters.put("anrede", "" + anrede);
+                                parameters.put("namenszusatz", "" + titel);
+                                parameters.put("praxis", "" + praxisName);
+                                parameters.put("adresse", "" + adresse);
+                                parameters.put("plz", "" + plz);
+                                parameters.put("stadt", "" + stadt);
+                                parameters.put("email", "" + email);
+                                parameters.put("praxisnr", "" + praxisTel);
+                                parameters.put("handynr", "" + telnr);
+                                parameters.put("passwort", "" + pw);
+                                parameters.put("adresszusatz", "" + praxisMail);
                                 return parameters;
                             }
                         };

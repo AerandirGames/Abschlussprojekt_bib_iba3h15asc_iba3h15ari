@@ -12,7 +12,6 @@ public class Registrieren extends AppCompatActivity
 {
     private Registrieren_SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
-    //private TabHost =
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,12 +20,10 @@ public class Registrieren extends AppCompatActivity
         setContentView(R.layout.activity_registrieren);
 
         mSectionsPageAdapter = new Registrieren_SectionsPageAdapter(getSupportFragmentManager());
-
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
     private void setupViewPager(ViewPager viewPager)

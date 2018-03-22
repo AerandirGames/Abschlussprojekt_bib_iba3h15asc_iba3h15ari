@@ -25,7 +25,7 @@ public class Einstellungen extends HomeScreen
         {
             getSupportActionBar().setTitle("Einstellungen");
         }
-        catch(NullPointerException n)
+        catch (NullPointerException n)
         {
             System.out.println("Nullpointer Exception");
         }
@@ -40,12 +40,12 @@ public class Einstellungen extends HomeScreen
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void zuEinstellungenAccount (View view)
+    public void zuEinstellungenAccount(View view)
     {
         startActivity(new Intent(this, EinstellungenAccount.class));
     }
 
-    public void zuEinstellungenImpressum (View view)
+    public void zuEinstellungenImpressum(View view)
     {
         startActivity(new Intent(this, EinstellungenImpressum.class));
     }

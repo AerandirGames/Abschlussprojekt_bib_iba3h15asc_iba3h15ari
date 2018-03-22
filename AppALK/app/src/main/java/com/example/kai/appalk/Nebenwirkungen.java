@@ -20,7 +20,6 @@ public class Nebenwirkungen extends HomeScreen
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nebenwirkungen);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -28,7 +27,7 @@ public class Nebenwirkungen extends HomeScreen
         {
             getSupportActionBar().setTitle("Nebenwirkungen");
         }
-        catch(NullPointerException n)
+        catch (NullPointerException n)
         {
             System.out.println("Nullpointer Exception");
         }

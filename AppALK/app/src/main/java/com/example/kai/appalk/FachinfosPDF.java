@@ -17,26 +17,20 @@ public class FachinfosPDF extends Fachinfos
         setContentView(R.layout.activity_fachinfos_pdf);
 
         PDFView pdfView = (PDFView) findViewById(R.id.pdfView);
-        Intent iin= getIntent();
+        Intent iin = getIntent();
         Bundle b = iin.getExtras();
 
-        if(b!=null)
+        if (b != null)
         {
-            if(b.get("name") != null) {
+            if (b.get("name") != null)
+            {
                 String dateiName = (String) b.get("name");
                 pdfView.fromAsset(dateiName).load();
             }
             else
             {
-                System.out.println(b.get("datei"));
-                //String s = (String) b.get("datei");
-                pdfView.fromFile((File)b.get("datei")).load();
+                pdfView.fromFile((File) b.get("datei")).load();
             }
         }
-
-
-
-
-
     }
 }

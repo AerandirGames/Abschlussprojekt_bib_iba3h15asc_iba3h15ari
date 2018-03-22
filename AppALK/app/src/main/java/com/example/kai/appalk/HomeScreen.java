@@ -10,10 +10,6 @@ import android.view.MenuItem;
 public class HomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-
-
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
@@ -25,7 +21,7 @@ public class HomeScreen extends AppCompatActivity
         {
             startActivity(new Intent(this, Messenger.class));
         }
-        else if (id == R.id.kontakt)
+        else if (id == R.id.kontaktanzeige)
         {
             startActivity(new Intent(this, Kontakt.class));
         }
@@ -49,8 +45,5 @@ public class HomeScreen extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
-
     }
-
 }

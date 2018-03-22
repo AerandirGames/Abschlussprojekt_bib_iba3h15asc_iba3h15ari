@@ -232,6 +232,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
         res.close();
         return result;
     }
+
     public String getPraxisName()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -447,25 +448,26 @@ public class UserDatenbankManager extends SQLiteOpenHelper
             public void onErrorResponse(VolleyError error)
             {
             }
-        }){
+        })
+        {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError
             {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("nid", "" + getNid());
-                parameters.put("name", ""+getName());
-                parameters.put("vorname", ""+getVorname());
-                parameters.put("anrede", ""+getAnrede());
-                parameters.put("namenszusatz", ""+getTitel());
-                parameters.put("praxis", ""+getPraxisName());
-                parameters.put("adresse", ""+getPraxisAdresse());
-                parameters.put("plz", ""+getPraxisPlz());
-                parameters.put("stadt", ""+getPraxisStadt());
-                parameters.put("email", ""+getEmail());
-                parameters.put("praxisnr", ""+getPraxisTel());
-                parameters.put("handynr", ""+getTel());
-                parameters.put("passwort", ""+getPw());
-                parameters.put("adresszusatz", ""+getPraxisAdresszs());
+                parameters.put("name", "" + getName());
+                parameters.put("vorname", "" + getVorname());
+                parameters.put("anrede", "" + getAnrede());
+                parameters.put("namenszusatz", "" + getTitel());
+                parameters.put("praxis", "" + getPraxisName());
+                parameters.put("adresse", "" + getPraxisAdresse());
+                parameters.put("plz", "" + getPraxisPlz());
+                parameters.put("stadt", "" + getPraxisStadt());
+                parameters.put("email", "" + getEmail());
+                parameters.put("praxisnr", "" + getPraxisTel());
+                parameters.put("handynr", "" + getTel());
+                parameters.put("passwort", "" + getPw());
+                parameters.put("adresszusatz", "" + getPraxisAdresszs());
                 return parameters;
             }
         };

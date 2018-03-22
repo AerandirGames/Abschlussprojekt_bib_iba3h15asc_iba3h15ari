@@ -107,7 +107,6 @@ public class Registrieren_Tab2 extends Fragment
         }
     }
 
-
     public boolean istMail(String mail)
     {
         boolean korrekt = false;
@@ -158,7 +157,6 @@ public class Registrieren_Tab2 extends Fragment
 
     public boolean istSicheresPasswort(String pw)
     {
-
         boolean korrekt = false;
         if (pw.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,25})"))
         {

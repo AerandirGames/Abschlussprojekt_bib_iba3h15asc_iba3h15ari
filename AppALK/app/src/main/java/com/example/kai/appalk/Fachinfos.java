@@ -20,20 +20,15 @@ import java.util.List;
 
 public class Fachinfos extends HomeScreen
 {
-
-    private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listHash;
-    //private PDFView pdfView;
-    private String dateiName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fachinfos);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,7 +36,7 @@ public class Fachinfos extends HomeScreen
         {
             getSupportActionBar().setTitle("Fachinformationen");
         }
-        catch(NullPointerException n)
+        catch (NullPointerException n)
         {
             System.out.println("Nullpointer Exception");
         }
@@ -58,7 +53,7 @@ public class Fachinfos extends HomeScreen
         //pdfView = (PDFView) findViewById(R.id.pdfView);
         //pdfView.setVisibility(View.INVISIBLE);
 
-        listView = findViewById(R.id.fi_expLv);
+        ExpandableListView listView = findViewById(R.id.fi_expLv);
         //listView.setVisibility(View.VISIBLE);
         initData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
@@ -69,8 +64,8 @@ public class Fachinfos extends HomeScreen
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l)
             {
-                String a = ""+listAdapter.getGroup(i);
-                String b = ""+listAdapter.getChild(i, i1);
+                String a = "" + listAdapter.getGroup(i);
+                String b = "" + listAdapter.getChild(i, i1);
                 pdfShow(a, b);
                 return false;
             }
@@ -172,9 +167,9 @@ public class Fachinfos extends HomeScreen
         listHash.put(listDataHeader.get(9), diagnostika);
     }
 
-    private void pdfShow (String a, String b)
+    private void pdfShow(String a, String b)
     {
-        this.dateiName = a + " " + b + ".pdf";
+        String dateiName = a + " " + b + ".pdf";
         Intent intent = new Intent(this, FachinfosPDF.class);
         intent.putExtra("name", dateiName);
         startActivity(intent);

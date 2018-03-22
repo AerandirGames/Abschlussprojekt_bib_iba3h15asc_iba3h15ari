@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class EinstellungenAccount extends AppCompatActivity
 {
@@ -23,13 +24,14 @@ public class EinstellungenAccount extends AppCompatActivity
         System.out.println(userDBM.getNid());
     }
 
-    public void setSendAnrede (View view)
+    public void setSendAnrede(View view)
     {
         Spinner sp_titel = findViewById(R.id.spinner);
         String titel = sp_titel.getSelectedItem().toString();
         if (!titel.equals("-"))
         {
             userDBM.updateTitel(titel);
+            Toast.makeText(this, "Daten wurden geändert", Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -48,13 +50,14 @@ public class EinstellungenAccount extends AppCompatActivity
         }
     }
 
-    public void setSendName (View view)
+    public void setSendName(View view)
     {
         EditText et_name = findViewById(R.id.editText4);
         String name = et_name.getText().toString();
         if (!name.equals("") && !name.isEmpty())
         {
             userDBM.updateName(name);
+            Toast.makeText(this, "Daten wurden geändert", Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -73,7 +76,7 @@ public class EinstellungenAccount extends AppCompatActivity
         }
     }
 
-    public void setSendEmail (View view)
+    public void setSendEmail(View view)
     {
         EditText et_email = findViewById(R.id.editText);
         String email = et_email.getText().toString();
@@ -82,6 +85,7 @@ public class EinstellungenAccount extends AppCompatActivity
             if (email.matches("(\\w{1,}(\\w|\\.){1,})@(\\w{1,}(\\w|\\.){1,}\\.\\w{2,})"))
             {
                 userDBM.updateEmail(email);
+                Toast.makeText(this, "Daten wurden geändert", Toast.LENGTH_LONG).show();
             }
             else
             {
@@ -115,7 +119,7 @@ public class EinstellungenAccount extends AppCompatActivity
         }
     }
 
-    public void setSendTel (View view)
+    public void setSendTel(View view)
     {
         EditText et_tel = findViewById(R.id.editText2);
         String tel = et_tel.getText().toString();
@@ -124,6 +128,7 @@ public class EinstellungenAccount extends AppCompatActivity
             if (tel.matches("^[0-9]*${6,25}"))
             {
                 userDBM.updateTel(tel);
+                Toast.makeText(this, "Daten wurden geändert", Toast.LENGTH_LONG).show();
             }
             else
             {
@@ -157,7 +162,7 @@ public class EinstellungenAccount extends AppCompatActivity
         }
     }
 
-    public void setSendPw (View view)
+    public void setSendPw(View view)
     {
         EditText et_pw = findViewById(R.id.editText3);
         String pw = et_pw.getText().toString();
@@ -166,6 +171,7 @@ public class EinstellungenAccount extends AppCompatActivity
             if (pw.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,25})"))
             {
                 userDBM.updatePasswort(pw);
+                Toast.makeText(this, "Daten wurden geändert", Toast.LENGTH_LONG).show();
             }
             else
             {
@@ -199,7 +205,7 @@ public class EinstellungenAccount extends AppCompatActivity
         }
     }
 
-    public void setSendPraxis (View view)
+    public void setSendPraxis(View view)
     {
         EditText et_praxisName = findViewById(R.id.editText5);
         EditText et_praxisTel = findViewById(R.id.editText15);
@@ -223,6 +229,7 @@ public class EinstellungenAccount extends AppCompatActivity
                 if (praxisPLZ.length() == 5)
                 {
                     userDBM.updatePraxis(praxisName, praxisAdresse, praxisPLZ, praxisStadt, praxisTel, praxisAdresszs);
+                    Toast.makeText(this, "Daten wurden geändert", Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -273,14 +280,15 @@ public class EinstellungenAccount extends AppCompatActivity
 
     public void abmelden(View view)
     {
-        DatenbankManager dbm =new DatenbankManager(this);
+        DatenbankManager dbm = new DatenbankManager(this);
         String input = "";
         Cursor res = dbm.getSwitchValue();
-        while (res.moveToNext()) {
+        while (res.moveToNext())
+        {
             input = res.getString(1);
         }
-        if(input.equals("1")) {
-
+        if (input.equals("1"))
+        {
             dbm.updateAutoLogFalse();
         }
         userDBM.deleteUser();

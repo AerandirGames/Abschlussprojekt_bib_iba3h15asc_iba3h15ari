@@ -34,13 +34,11 @@ public class Messenger extends HomeScreen
     private RadioButton apothekerRB;
     private Button fragen;
 
-
     ArrayAdapter<CharSequence> apothekerAdapter;
     ArrayAdapter<CharSequence> arztKAdapter;
     ArrayAdapter<CharSequence> arztProduktAdapter;
     ArrayAdapter<CharSequence> arztSonstigesAdapter;
     ArrayAdapter<CharSequence> kontaktweiseAdapter;
-
     String frage;
 
     @Override
@@ -48,7 +46,6 @@ public class Messenger extends HomeScreen
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,7 +53,7 @@ public class Messenger extends HomeScreen
         {
             getSupportActionBar().setTitle(R.string.app_name);
         }
-        catch(NullPointerException n)
+        catch (NullPointerException n)
         {
             System.out.println("Nullpointer Exception");
         }
@@ -66,13 +63,11 @@ public class Messenger extends HomeScreen
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         apothekerAdapter = ArrayAdapter.createFromResource(this,
-            R.array.apothekerFragen, R.layout.spinner_layout);
-
+                R.array.apothekerFragen, R.layout.spinner_layout);
         arztKAdapter = ArrayAdapter.createFromResource(this,
                 R.array.arztKategorien, R.layout.spinner_layout);
         arztProduktAdapter = ArrayAdapter.createFromResource(this,
@@ -90,7 +85,6 @@ public class Messenger extends HomeScreen
 
         spinnerOben = findViewById(R.id.spinner2);
         spinnerUnten = findViewById(R.id.spinner3);
-
         spinnerUnten.setVisibility(View.INVISIBLE);
         spinnerOben.setVisibility(View.INVISIBLE);
 
@@ -99,62 +93,51 @@ public class Messenger extends HomeScreen
 
         frageInput = findViewById(R.id.editText11);
         frageInput.setVisibility(View.INVISIBLE);
-
         fragen = findViewById(R.id.button2);
-
         fragen.setEnabled(false);
+        fragen.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if (frage.equals("E-Mail") || frage.equals("SMS") || frage.equals("Per Anruf"))
+                {
+                    String empfaenger = "daniel.schitz@web.de";
+                    String betreff = "Kunde möchte per " + frage + " kontaktiert werden";
+                    String nutzerFrage = "" + frageInput.getText().toString();
 
-        fragen.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View view) {
-                                          if(frage.equals("E-Mail")||frage.equals("SMS")||frage.equals("Per Anruf"))
-                                          {
-                                              String empfaenger = "daniel.schitz@web.de";
-                                              String betreff = "Kunde möchte per " + frage + " kontaktiert werden";
-                                              String nutzerFrage = ""+frageInput.getText().toString();
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{empfaenger});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, betreff);
+                    intent.putExtra(Intent.EXTRA_TEXT, nutzerFrage);
 
-                                              Intent intent = new Intent(Intent.ACTION_SEND);
-                                              intent.putExtra(Intent.EXTRA_EMAIL,new String[]{empfaenger});
-                                              intent.putExtra(Intent.EXTRA_SUBJECT, betreff);
-                                              intent.putExtra(Intent.EXTRA_TEXT, nutzerFrage);
-
-                                              intent.setType("messege/rfc822");
-
-                                              startActivity(Intent.createChooser(intent,"Send Email"));
-                                              Toast.makeText(Messenger.this, "Hat geklappt", Toast.LENGTH_LONG).show();
-
-
-                                          }
-                                          else
-                                          {
-                                              Intent i = new Intent(Messenger.this,MessengerFrageAusgabe.class);
-                                              i.putExtra("frage", frage);
-                                              startActivity(i);
-                                          }
-                                      }
-                                  }
-        );
-
-
-
+                    intent.setType("messege/rfc822");
+                    startActivity(Intent.createChooser(intent, "Send Email"));
+                }
+                else
+                {
+                    Intent i = new Intent(Messenger.this, MessengerFrageAusgabe.class);
+                    i.putExtra("frage", frage);
+                    startActivity(i);
+                }
+            }
+        });
 
         spinnerOben.setAdapter(arztKAdapter);
-
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
                 // checkedId is the RadioButton selected
-               // RadioButton rb=(RadioButton)findViewById(checkedId);
+                // RadioButton rb=(RadioButton)findViewById(checkedId);
                 spinnerOben.setVisibility(View.VISIBLE);
                 spinnerUnten.setVisibility(View.INVISIBLE);
                 frageInput.setVisibility(View.INVISIBLE);
                 fragen.setEnabled(false);
-                if(checkedId != 2131689693)
+                if (checkedId != 2131689693)
                 {
-
                     spinnerOben.setAdapter(arztKAdapter);
-
                     spinnerOben.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                     {
                         @Override
@@ -163,13 +146,12 @@ public class Messenger extends HomeScreen
                             switch (position)
                             {
                                 case 0:
-                                   spinnerUnten.setVisibility(View.INVISIBLE);
+                                    spinnerUnten.setVisibility(View.INVISIBLE);
                                     break;
 
                                 case 1:
                                     spinnerUnten.setVisibility(View.VISIBLE);
                                     spinnerUnten.setAdapter(arztProduktAdapter);
-
                                     spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                                     {
                                         @Override
@@ -178,19 +160,15 @@ public class Messenger extends HomeScreen
                                             switch (position)
                                             {
                                                 case 0:
-
                                                     break;
-
                                                 case 1:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     break;
-
                                                 case 2:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     break;
-
                                                 case 3:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
@@ -205,65 +183,56 @@ public class Messenger extends HomeScreen
                                                     break;
                                             }
                                         }
+
                                         @Override
                                         public void onNothingSelected(AdapterView<?> adapterView)
                                         {
 
                                         }
-
                                     });
-
                                     break;
-
                                 case 2:
                                     spinnerUnten.setVisibility(View.VISIBLE);
                                     spinnerUnten.setAdapter(arztSonstigesAdapter);
-
                                     spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                                     {
                                         @Override
-                                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
-                                {
-                                    switch (position)
-                                    {
-                                        case 0:
+                                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                                        {
+                                            switch (position)
+                                            {
+                                                case 0:
+                                                    break;
+                                                case 1:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                                case 2:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                                case 3:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                                case 4:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                                case 5:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    break;
+                                            }
+                                        }
 
-                                            break;
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> adapterView)
+                                        {
 
-                                        case 1:
-                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                            fragen.setEnabled(true);
-                                            break;
-
-                                        case 2:
-                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                            fragen.setEnabled(true);
-                                            break;
-
-                                        case 3:
-                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                            fragen.setEnabled(true);
-                                            break;
-                                        case 4:
-                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                            fragen.setEnabled(true);
-                                            break;
-                                        case 5:
-                                            frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                            fragen.setEnabled(true);
-                                            break;
-                                    }
-                                }
-                                @Override
-                                public void onNothingSelected(AdapterView<?> adapterView)
-                                {
-
-                                }
-
-                            });
-
+                                        }
+                                    });
                                     break;
-
                                 case 3:
                                     spinnerUnten.setVisibility(View.VISIBLE);
                                     spinnerUnten.setAdapter(kontaktweiseAdapter);
@@ -276,43 +245,118 @@ public class Messenger extends HomeScreen
                                             switch (position)
                                             {
                                                 case 0:
-
                                                     break;
-
                                                 case 1:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
-
                                                     frageInput.setVisibility(View.VISIBLE);
                                                     break;
-
                                                 case 2:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
-
                                                     frageInput.setVisibility(View.VISIBLE);
                                                     break;
-
                                                 case 3:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
-
                                                     frageInput.setVisibility(View.VISIBLE);
                                                     break;
-
                                             }
                                         }
+
                                         @Override
                                         public void onNothingSelected(AdapterView<?> adapterView)
                                         {
 
                                         }
-
                                     });
-
                                     break;
                             }
                         }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView)
+                        {
+
+                        }
+                    });
+                }
+                else
+                {
+                    spinnerOben.setAdapter(apothekerAdapter);
+                    spinnerOben.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                    {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                        {
+                            switch (position)
+                            {
+                                case 0:
+                                    break;
+                                case 1:
+                                    frage = spinnerOben.getAdapter().getItem(position).toString();
+                                    fragen.setEnabled(true);
+                                    break;
+                                case 2:
+                                    frage = spinnerOben.getAdapter().getItem(position).toString();
+                                    fragen.setEnabled(true);
+                                    break;
+                                case 3:
+                                    frage = spinnerOben.getAdapter().getItem(position).toString();
+                                    fragen.setEnabled(true);
+                                    break;
+                                case 4:
+                                    frage = spinnerOben.getAdapter().getItem(position).toString();
+                                    fragen.setEnabled(true);
+                                    break;
+                                case 5:
+                                    frage = spinnerOben.getAdapter().getItem(position).toString();
+                                    fragen.setEnabled(true);
+                                    break;
+                                case 6:
+                                    frage = spinnerOben.getAdapter().getItem(position).toString();
+                                    fragen.setEnabled(true);
+                                    break;
+                                case 7:
+                                    spinnerUnten.setVisibility(View.VISIBLE);
+                                    spinnerUnten.setAdapter(kontaktweiseAdapter);
+                                    spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                                    {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
+                                        {
+                                            switch (position)
+                                            {
+                                                case 0:
+                                                    break;
+                                                case 1:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    frageInput.setVisibility(View.VISIBLE);
+                                                    break;
+                                                case 2:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    frageInput.setVisibility(View.VISIBLE);
+                                                    break;
+                                                case 3:
+                                                    frage = spinnerUnten.getAdapter().getItem(position).toString();
+                                                    fragen.setEnabled(true);
+                                                    frageInput.setVisibility(View.VISIBLE);
+                                                    break;
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> adapterView)
+                                        {
+
+                                        }
+                                    });
+                                    break;
+                            }
+                        }
+
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView)
                         {
@@ -321,105 +365,6 @@ public class Messenger extends HomeScreen
 
                     });
                 }
-                else
-                    {
-                        spinnerOben.setAdapter(apothekerAdapter);
-
-                        spinnerOben.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                        {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
-                            {
-                                switch (position)
-                                {
-                                    case 0:
-
-                                        break;
-
-                                    case 1:
-                                        frage = spinnerOben.getAdapter().getItem(position).toString();
-                                        fragen.setEnabled(true);
-                                        break;
-
-                                    case 2:
-                                        frage = spinnerOben.getAdapter().getItem(position).toString();
-                                        fragen.setEnabled(true);
-                                        break;
-
-                                    case 3:
-                                        frage = spinnerOben.getAdapter().getItem(position).toString();
-                                        fragen.setEnabled(true);
-                                        break;
-                                    case 4:
-                                        frage = spinnerOben.getAdapter().getItem(position).toString();
-                                        fragen.setEnabled(true);
-                                        break;
-                                    case 5:
-                                        frage = spinnerOben.getAdapter().getItem(position).toString();
-                                        fragen.setEnabled(true);
-                                        break;
-                                    case 6:
-                                        frage = spinnerOben.getAdapter().getItem(position).toString();
-                                        fragen.setEnabled(true);
-                                        break;
-                                    case 7:
-                                        spinnerUnten.setVisibility(View.VISIBLE);
-                                        spinnerUnten.setAdapter(kontaktweiseAdapter);
-
-                                        spinnerUnten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                                        {
-                                            @Override
-                                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
-                                            {
-                                                switch (position)
-                                                {
-                                                    case 0:
-
-                                                        break;
-
-                                                    case 1:
-                                                        frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                                        fragen.setEnabled(true);
-
-                                                        frageInput.setVisibility(View.VISIBLE);
-                                                        break;
-
-                                                    case 2:
-                                                        frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                                        fragen.setEnabled(true);
-
-                                                        frageInput.setVisibility(View.VISIBLE);
-                                                        break;
-
-                                                    case 3:
-                                                        frage = spinnerUnten.getAdapter().getItem(position).toString();
-                                                        fragen.setEnabled(true);
-
-                                                        frageInput.setVisibility(View.VISIBLE);
-                                                        break;
-
-                                                }
-                                            }
-                                            @Override
-                                            public void onNothingSelected(AdapterView<?> adapterView)
-                                            {
-
-                                            }
-
-                                        });
-                                        break;
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView)
-                            {
-
-                            }
-
-                        });
-                    }
-
-
             }
         });
 
