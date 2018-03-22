@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class Messenger extends HomeScreen
     ArrayAdapter<CharSequence> arztSonstigesAdapter;
     ArrayAdapter<CharSequence> kontaktweiseAdapter;
     String frage;
+
+    TextView frageTitel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -88,6 +91,9 @@ public class Messenger extends HomeScreen
         spinnerUnten.setVisibility(View.INVISIBLE);
         spinnerOben.setVisibility(View.INVISIBLE);
 
+        frageTitel = findViewById(R.id.textView26);
+        frageTitel.setVisibility(View.INVISIBLE);
+
         arztRB = findViewById(R.id.radioButton3);
         apothekerRB = findViewById(R.id.radioButton4);
 
@@ -134,6 +140,7 @@ public class Messenger extends HomeScreen
                 spinnerOben.setVisibility(View.VISIBLE);
                 spinnerUnten.setVisibility(View.INVISIBLE);
                 frageInput.setVisibility(View.INVISIBLE);
+                frageTitel.setVisibility(View.INVISIBLE);
                 fragen.setEnabled(false);
                 if (checkedId != 2131689693)
                 {
@@ -250,16 +257,19 @@ public class Messenger extends HomeScreen
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     frageInput.setVisibility(View.VISIBLE);
+                                                    frageTitel.setVisibility(View.VISIBLE);
                                                     break;
                                                 case 2:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     frageInput.setVisibility(View.VISIBLE);
+                                                    frageTitel.setVisibility(View.VISIBLE);
                                                     break;
                                                 case 3:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     frageInput.setVisibility(View.VISIBLE);
+                                                    frageTitel.setVisibility(View.VISIBLE);
                                                     break;
                                             }
                                         }
@@ -333,16 +343,19 @@ public class Messenger extends HomeScreen
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     frageInput.setVisibility(View.VISIBLE);
+                                                    frageTitel.setVisibility(View.VISIBLE);
                                                     break;
                                                 case 2:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     frageInput.setVisibility(View.VISIBLE);
+                                                    frageTitel.setVisibility(View.VISIBLE);
                                                     break;
                                                 case 3:
                                                     frage = spinnerUnten.getAdapter().getItem(position).toString();
                                                     fragen.setEnabled(true);
                                                     frageInput.setVisibility(View.VISIBLE);
+                                                    frageTitel.setVisibility(View.VISIBLE);
                                                     break;
                                             }
                                         }

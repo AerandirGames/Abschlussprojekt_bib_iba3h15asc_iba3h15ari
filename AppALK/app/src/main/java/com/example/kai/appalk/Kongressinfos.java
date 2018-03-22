@@ -103,26 +103,6 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
 
     public void kongresseAnzeigen()
     {
-        /*
-        String path = Environment.getExternalStorageDirectory().toString()+"/Download";
-
-        AssetManager mgr = getAssets();
-
-        try {
-
-            String list[] = mgr.list(path);
-            Log.e("FILES", String.valueOf(list.length));
-
-
-                for (int i=0; i<list.length; ++i)
-                {
-                    Log.e("FILE:", path +"/"+ list[i]);
-                }
-
-        } catch (IOException e) {
-            Log.v("List error:", "can't list" + path);
-        }
-        */
         directory = new File(Environment.getExternalStorageDirectory().toString() + "/Download");
         dateien = directory.listFiles();
         for (int i = 0; i < dateien.length; ++i)
