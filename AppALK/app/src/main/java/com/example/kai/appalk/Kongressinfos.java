@@ -84,6 +84,19 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
+
+        if(b!=null)
+        {
+            Context context = getApplicationContext();
+            CharSequence text = b.get("ergebnis";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+
         lv = findViewById(R.id.listView);
 
         liste = new ArrayList<String>();
@@ -194,6 +207,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         System.out.println(erg);
 
         Intent i = new Intent(this, Kongressinfos.class);
+        i.putExtra("ergebnis","Datei wurde heruntergeladen.");
         startActivity(i);
 
     }
