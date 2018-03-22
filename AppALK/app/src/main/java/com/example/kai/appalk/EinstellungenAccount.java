@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,7 +22,25 @@ public class EinstellungenAccount extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_einstellungen_account);
         userDBM = new UserDatenbankManager(this);
-        System.out.println(userDBM.getNid());
+        EditText et_name = findViewById(R.id.editText4);
+        EditText et_email = findViewById(R.id.editText);
+        EditText et_tel = findViewById(R.id.editText2);
+        EditText et_praxisName = findViewById(R.id.editText5);
+        EditText et_praxisTel = findViewById(R.id.editText15);
+        EditText et_praxisAdresse = findViewById(R.id.editText12);
+        EditText et_praxisPLZ = findViewById(R.id.editText14);
+        EditText et_praxisStadt = findViewById(R.id.editText13);
+        EditText et_praxisAdresszs = findViewById(R.id.editText16);
+
+        et_name.setText(userDBM.getName());
+        et_email.setText(userDBM.getEmail());
+        et_tel.setText(userDBM.getTel());
+        et_praxisName.setText(userDBM.getPraxisName());
+        et_praxisTel.setText(userDBM.getPraxisTel());
+        et_praxisAdresse.setText(userDBM.getPraxisAdresse());
+        et_praxisPLZ.setText(userDBM.getPraxisPlz());
+        et_praxisStadt.setText(userDBM.getPraxisStadt());
+        et_praxisAdresszs.setText(userDBM.getPraxisAdresszs());
     }
 
     public void setSendAnrede(View view)

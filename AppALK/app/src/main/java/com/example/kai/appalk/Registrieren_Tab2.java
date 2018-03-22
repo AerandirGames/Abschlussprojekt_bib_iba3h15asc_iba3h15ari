@@ -134,7 +134,7 @@ public class Registrieren_Tab2 extends Fragment
     public boolean istTelNr(String telnr)
     {
         boolean korrekt = false;
-        if (telnr.matches("^[0-9]*${6,25}"))
+        if (telnr.matches("([\\+(]?(\\d){2,}[)]?[- \\.]?(\\d){2,}[- \\.]?(\\d){2,}[- \\.]?(\\d){2,}[- \\.]?(\\d){2,})|([\\+(]?(\\d){2,}[)]?[- \\.]?(\\d){2,}[- \\.]?(\\d){2,}[- \\.]?(\\d){2,})|([\\+(]?(\\d){2,}[)]?[- \\.]?(\\d){2,}[- \\.]?(\\d){2,})"))
         {
             korrekt = true;
         }

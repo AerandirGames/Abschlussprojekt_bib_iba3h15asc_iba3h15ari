@@ -92,7 +92,7 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="215dp"
+            android:layout_width="212dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
@@ -102,13 +102,13 @@
 
         <Button
             android:id="@+id/button6"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/ic_menu_send"
+            android:drawableLeft="@drawable/send"
             android:onClick="setSendAnrede"
             android:text=""
             app:layout_constraintEnd_toStartOf="@+id/guideline34"
@@ -117,13 +117,13 @@
 
         <Button
             android:id="@+id/button11"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/ic_menu_send"
+            android:drawableLeft="@drawable/send"
             android:onClick="setSendName"
             android:text=""
             app:layout_constraintEnd_toStartOf="@+id/guideline34"
@@ -132,13 +132,13 @@
 
         <Button
             android:id="@+id/button10"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:drawableLeft="@drawable/ic_menu_send"
+            android:drawableLeft="@drawable/send"
             android:onClick="setSendEmail"
             android:text=""
             app:layout_constraintEnd_toStartOf="@+id/guideline34"
@@ -147,13 +147,13 @@
 
         <Button
             android:id="@+id/button8"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:drawableLeft="@drawable/ic_menu_send"
+            android:drawableLeft="@drawable/send"
             android:onClick="setSendTel"
             android:text=""
             app:layout_constraintEnd_toStartOf="@+id/guideline34"
@@ -162,13 +162,13 @@
 
         <Button
             android:id="@+id/button12"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:drawableLeft="@drawable/ic_menu_send"
+            android:drawableLeft="@drawable/send"
             android:onClick="setSendPw"
             android:text=""
             app:layout_constraintEnd_toStartOf="@+id/guideline34"

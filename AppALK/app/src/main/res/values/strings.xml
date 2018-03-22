@@ -28,7 +28,7 @@
     <string name="plz">PLZ</string>
 
     <string-array name="titleNames">
-        <item>-</item>
+        <item>-Titel-</item>
         <item>Dr.</item>
         <item>Dr. med.</item>
         <item>Prof. Dr. med.</item>
@@ -44,7 +44,7 @@
     </string-array>
 
     <string-array name="anredeEntries">
-        <item>-</item>
+        <item>-Anrede-</item>
         <item>Herr</item>
         <item>Frau</item>
     </string-array>
