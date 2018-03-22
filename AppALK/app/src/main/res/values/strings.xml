@@ -78,10 +78,10 @@
     <string name="einstellungen">Einstellungen</string>
 
     <!-- Messenger -->
-    <string name="firstMessage">Hallo, hier finden Sie häufig gestellte Fragen die Ihnen eventuell weiterhelfen. Falls nicht finden Sie hier ebenfalls den Punkt -individuelle Frage stellen- wo Sie per SMS, Anruf oder E-Mal eine Antwort innerhalb der nächsten 24h von uns erwarten können.</string>
+    <string name="firstMessage">Hallo, hier finden Sie häufig gestellte Fragen. Falls Ihnen das nicht weiterhilft, finden Sie hier ebenfalls den Punkt -individuelle Frage stellen- wo Sie per SMS, Anruf oder E-Mal eine Antwort innerhalb der nächsten 24h von uns erwarten können.</string>
     <string name="radioArzt">Arzt</string>
     <string name="radioApotheker">Apotheker</string>
-    <string name="individuelleFrageText">Hier kannst du deine Frage eingeben.</string>
+    <string name="individuelleFrageText">Hier können Sie Ihre Frage eingeben.</string>
     <string name="frageButton">Fragen</string>
 
 

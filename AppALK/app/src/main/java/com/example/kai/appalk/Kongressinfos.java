@@ -90,7 +90,7 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         if(b!=null)
         {
             Context context = getApplicationContext();
-            CharSequence text = b.get("ergebnis";
+            CharSequence text = (CharSequence) b.get("ergebnis");
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);
@@ -170,11 +170,6 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
     public void handleResult(Result result)
     {
 
-        File file=new File(Environment.DIRECTORY_DOWNLOADS);
-        File[] list = file.listFiles();
-        int fileNumber = list.length;
-        System.out.println(fileNumber);
-
         myResult = result;
         dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(result.getText());
@@ -185,26 +180,6 @@ public class Kongressinfos extends HomeScreen implements ZXingScannerView.Result
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, nameOfFile);
 
         dm.enqueue(request);
-
-
-        String erg = "";
-        file=new File(Environment.DIRECTORY_DOWNLOADS);
-        list = file.listFiles();
-/*
-
-
-
-        File mPath = new File((Environment.DIRECTORY_DOWNLOADS + "/" + nameOfFile));
-        System.out.println(mPath);
-        System.out.println(mPath.getAbsoluteFile());
-        */
-        if (fileNumber<list.length) {
-            erg = "existiert";
-        }else
-        {
-            erg = "existiert nicht";
-        }
-        System.out.println(erg);
 
         Intent i = new Intent(this, Kongressinfos.class);
         i.putExtra("ergebnis","Datei wurde heruntergeladen.");

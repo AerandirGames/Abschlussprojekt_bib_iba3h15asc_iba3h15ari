@@ -54,7 +54,7 @@ public class UserDatenbankManager extends SQLiteOpenHelper
                     COL7 + " TEXT, " + COL8 + " TEXT, " + COL9 + " TEXT, " +
                     COL10 + " TEXT, " + COL11 + " TEXT, " + COL12 + " TEXT, " +
                     COL13 + " TEXT, " + COL14 + " TEXT);";
-    private String updateUrl = "http://192.168.213.153/android_connect/updateUser.php";
+    private String updateUrl = "http://192.168.214.9/android_connect/updateUser.php";
     private RequestQueue requestQueue;
 
     public UserDatenbankManager(Context context)

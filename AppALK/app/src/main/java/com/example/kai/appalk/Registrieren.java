@@ -32,7 +32,6 @@ public class Registrieren extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager)
     {
         Registrieren_SectionsPageAdapter adapter = new Registrieren_SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Registrieren_Tab1(), "DocCheck");
         adapter.addFragment(new Registrieren_Tab2(), "Personen daten");
         adapter.addFragment(new Registrieren_Tab3(), "Praxisdaten");
         viewPager.setAdapter(adapter);

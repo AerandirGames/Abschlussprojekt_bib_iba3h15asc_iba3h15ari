@@ -111,6 +111,7 @@
 
     <Button
         android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="97dp"
         android:layout_height="35dp"
         android:layout_marginBottom="32dp"

@@ -53,16 +53,6 @@ public class Registrieren_Tab2 extends Fragment
                         Registrieren_Tab3.pw, Registrieren_Tab3.pwWiederholen, Registrieren_Tab3.anrede);
             }
         });
-
-        Button back = view.findViewById(R.id.but_tab2zur);
-        back.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                ((Registrieren) getActivity()).setCurrentItem(0, true);
-            }
-        });
         return view;
     }
 
@@ -80,7 +70,7 @@ public class Registrieren_Tab2 extends Fragment
                         {
                             if (stimmenPasswoerterUeberein(pw, pwWiederholen))
                             {
-                                ((Registrieren) getActivity()).setCurrentItem(2, true);
+                                ((Registrieren) getActivity()).setCurrentItem(1, true);
                             }
                         }
                     }

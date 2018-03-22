@@ -105,20 +105,12 @@
 
     <Button
         android:id="@+id/but_tab2weiter"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="100dp"
         android:layout_height="0dp"
         android:text="@string/next"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline17" />
-
-    <Button
-        android:id="@+id/but_tab2zur"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:text="@string/back"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <android.support.constraint.Guideline

@@ -13,6 +13,11 @@
         android:layout_marginTop="8dp"
         android:onClick="zuEinstellungenAccount"
         android:text="@string/account"
+        android:textSize="40sp"
+        android:paddingTop="150sp"
+        android:background="@drawable/account"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,6 +31,11 @@
         android:layout_marginTop="8dp"
         android:onClick="zuEinstellungenImpressum"
         android:text="@string/impressum"
+        android:textSize="40sp"
+        android:paddingTop="150sp"
+        android:background="@drawable/impressum"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -36,13 +46,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.07" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
+        app:layout_constraintGuide_percent="0.54" />
 
 </android.support.constraint.ConstraintLayout>
