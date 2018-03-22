@@ -10,8 +10,8 @@
             android:title="@string/faq" />
         <item
             android:id="@+id/kontaktanzeige"
-            android:icon="@drawable/ic_frage"
-            android:title="@string/faq" />
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/kontakt" />
         <item
             android:id="@+id/nebenwirkungen"
             android:icon="@drawable/ic_nebenwirkungen"
