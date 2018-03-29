@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -21,7 +22,9 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -125,7 +128,7 @@ public class NebenwirkungenFormular extends AppCompatActivity
                         e.printStackTrace();
                     }
                 }
-                imgUri = Uri.fromFile(file);
+                imgUri =  FileProvider.getUriForFile(getApplicationContext(), "com.myfileprovider", file);
                 Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 i.putExtra(MediaStore.EXTRA_OUTPUT, imgUri);
                 startActivityForResult(i, 0);
@@ -171,7 +174,9 @@ public class NebenwirkungenFormular extends AppCompatActivity
                     "Name des Präparats: " + name.getText().toString() + ", Chargen-Nr: " + cNr.getText().toString() + "\n" +
                     "Informationen des Meldenden; \n Name: " + userDBM.getVorname() + " " + userDBM.getName() + ", Tel.: " + userDBM.getTel() + ", Mail: " + userDBM.getEmail() + "\n" +
                     "Informationen der Reaktion:\nBeschreibung der Reaktion: " + beschr.getText().toString());
+            emailIntent.setType("image/jpg");
             emailIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
+            System.out.println(imgUri);
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
         }
     }

@@ -28,7 +28,7 @@ public class Anmelden extends AppCompatActivity
     private boolean autologin_b;
     private Switch autologin;
     private RequestQueue requestQueue;
-    private String showUserUrl = "http://192.168.214.9/android_connect/showUser.php";
+    private String showUserUrl = "http://192.168.212.81/android_connect/showUser.php";
     private EditText usernameEditText, pwEditText;
     private UserDatenbankManager userDBM;
 

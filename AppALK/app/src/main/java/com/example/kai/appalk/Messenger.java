@@ -142,7 +142,7 @@ public class Messenger extends HomeScreen
                 frageInput.setVisibility(View.INVISIBLE);
                 frageTitel.setVisibility(View.INVISIBLE);
                 fragen.setEnabled(false);
-                if (checkedId != 2131689693)
+                if (arztRB.isChecked())
                 {
                     spinnerOben.setAdapter(arztKAdapter);
                     spinnerOben.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
